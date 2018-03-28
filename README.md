@@ -9,7 +9,7 @@
 
 
 <p align="center">
-  coming soon:
+  coming soon:<br/>
   <a href="https://appcenter.elementary.io/com.github.artemanufrij.findfileconflicts">
     <img src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter">
   </a>
