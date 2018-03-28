@@ -27,6 +27,7 @@
 
 namespace FindFileConflicts.Widgets {
     public class FileConflict : Gtk.ListBoxRow {
+        public signal void solved ();
 
         public Objects.LocalFile file1 { get; private set; }
         public Objects.LocalFile file2 { get; private set; }
@@ -43,8 +44,16 @@ namespace FindFileConflicts.Widgets {
             content.column_spacing = 6;
 
             var file1_widget = new Widgets.LocalFile (file1);
+            file1_widget.removed.connect (
+                () => {
+                    solved ();
+                });
             file1_widget.expand = true;
             var file2_widget = new Widgets.LocalFile (file2);
+            file2_widget.removed.connect (
+                () => {
+                    solved ();
+                });
             file2_widget.expand = true;
 
             content.attach (file1_widget, 0, 0);

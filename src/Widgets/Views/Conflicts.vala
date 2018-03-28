@@ -29,11 +29,22 @@ namespace FindFileConflicts.Widgets.Views {
     public class Conflicts : Gtk.Grid {
         Services.LibraryManager lb_manager;
 
+        public signal void solved ();
+
         Gtk.ListBox conflicts;
 
         construct {
             lb_manager = Services.LibraryManager.instance;
-            lb_manager.conflict_found.connect (add_conflict);
+            lb_manager.conflict_found.connect (
+                (file1, file2) => {
+                    stdout.printf ("FOUND\n");
+                    Idle.add (
+                        () => {
+                            add_conflict (file1, file2);
+                            return false;
+                        });
+                });
+            lb_manager.scan_started.connect (reset);
         }
 
         public Conflicts () {
@@ -52,7 +63,28 @@ namespace FindFileConflicts.Widgets.Views {
         }
 
         private void add_conflict (Objects.LocalFile file1, Objects.LocalFile file2) {
-            conflicts.add (new Widgets.FileConflict (file1, file2));
+            file1.exclude_date ();
+            file2.exclude_date ();
+            Widgets.FileConflict conflict = null;
+            if (file1.modified < file2.modified) {
+                conflict = new Widgets.FileConflict (file1, file2);
+            } else {
+                conflict = new Widgets.FileConflict (file2, file1);
+            }
+            conflicts.add (conflict);
+            conflict.solved.connect (
+                ()=> {
+                    conflict.destroy ();
+                    if (conflicts.get_children ().length () == 0) {
+                        solved ();
+                    }
+                });
+        }
+
+        private void reset () {
+            foreach (var item in conflicts.get_children ()) {
+                item.destroy ();
+            }
         }
     }
 }

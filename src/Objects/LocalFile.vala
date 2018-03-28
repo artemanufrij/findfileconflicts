@@ -29,9 +29,8 @@ namespace FindFileConflicts.Objects {
     public class LocalFile {
         public string path { get; private set; }
         public string path_down { get; private set; }
-        public string root { get; private set; }
         public string title { get; private set; }
-        public File? file { get; private set; default = null; }
+        public File ? file { get; private set; default = null; }
 
         public string _date = "";
         public string date {
@@ -43,17 +42,17 @@ namespace FindFileConflicts.Objects {
                 return _date;
             }
         }
+        public int64 modified { get; private set; default = 0; }
 
         public bool has_conflict { get; set; default = false; }
 
         public LocalFile (string path, string root) {
             this.path = path;
             this.path_down = path.down ();
-            this.title = path.replace (root, "");
-            this.root = root;
+            this.title = path.replace (root + "/", "");
         }
 
-        private void exclude_date () {
+        public void exclude_date () {
             if (file == null) {
                 file = File.new_for_path (path);
             }
@@ -70,7 +69,8 @@ namespace FindFileConflicts.Objects {
             info.dispose ();
 
             if (output != null && output != "") {
-                var datetime = new DateTime.from_unix_local (int64.parse (output));
+                modified = int64.parse (output);
+                var datetime = new DateTime.from_unix_local (modified);
                 _date = datetime.format ("%e. %b, %Y - %T").strip ();
                 datetime = null;
             }

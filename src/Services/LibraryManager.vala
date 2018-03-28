@@ -28,6 +28,7 @@
 namespace FindFileConflicts.Services {
     public class LibraryManager : GLib.Object {
         Settings settings;
+        Services.LocalFilesManager lf_manager;
 
         static LibraryManager _instance = null;
         public static LibraryManager instance {
@@ -45,8 +46,6 @@ namespace FindFileConflicts.Services {
         public signal void check_for_conflicts_finished ();
         public signal void conflict_found (Objects.LocalFile file1, Objects.LocalFile file2);
 
-        public Services.LocalFilesManager lf_manager { get; construct set; }
-
         string root = "";
         uint finish_timer = 0;
         GLib.List<Objects.LocalFile> files = null;
@@ -58,11 +57,9 @@ namespace FindFileConflicts.Services {
             lf_manager.found_file.connect (found_local_file);
             lf_manager.scan_started.connect (() => { scan_started (); });
 
-            files = new GLib.List<Objects.LocalFile> ();
-
-            scan_finished.connect (
+            scan_finished.connect_after (
                 () => {
-                    check_for_conflicts ();
+                    check_for_conflicts.begin ();
                 });
         }
 
@@ -70,6 +67,7 @@ namespace FindFileConflicts.Services {
         }
 
         public async void scan_folder (string path) {
+            files = new GLib.List<Objects.LocalFile> ();
             root = path;
             lf_manager.scan (path);
             call_finish_timer ();
@@ -78,7 +76,9 @@ namespace FindFileConflicts.Services {
         public void found_local_file (string path) {
             call_finish_timer ();
             var file = new Objects.LocalFile (path, root);
-            files.append (file);
+            lock (files) {
+                files.append (file);
+            }
         }
 
         private void call_finish_timer () {
@@ -101,25 +101,32 @@ namespace FindFileConflicts.Services {
             }
         }
 
-        private void check_for_conflicts () {
+        private async void check_for_conflicts () {
             check_for_conflicts_begin ();
-            for (var i1 = 0; i1 < files.length (); i1 ++) {
-                var file1 = files.nth_data (i1);
-                if (file1.has_conflict) {
-                    continue;
-                }
+            new Thread<void*> (
+                "check_for_conflicts",
+                () => {
+                    files.sort (
+                        (a, b) => {
+                            return a.path_down.collate (b.path_down);
+                        });
+                    for (var i = 0; i < files.length () - 1; i++) {
+                        var file1 = files.nth_data (i);
+                        if (file1.has_conflict) {
+                            continue;
+                        }
 
-                for (var i2 = i1; i2 < files.length (); i2 ++) {
-                    var file2 = files.nth_data (i2);
-                    if (file1.path != file2.path && file1.path_down == file2.path_down) {
-                        file1.has_conflict = true;
-                        file2.has_conflict = true;
-
-                        conflict_found (file1, file2);
+                        var file2 = files.nth_data (i + 1);
+                        if (file1.path_down == file2.path_down) {
+                            file1.has_conflict = true;
+                            file2.has_conflict = true;
+                            conflict_found (file1, file2);
+                        }
                     }
-                }
-            }
-            check_for_conflicts_finished ();
+
+                    check_for_conflicts_finished ();
+                    return null;
+                });
         }
     }
 }

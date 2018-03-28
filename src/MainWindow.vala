@@ -35,6 +35,7 @@ namespace FindFileConflicts {
         Gtk.Spinner spinner;
         Gtk.MenuButton app_menu;
         Gtk.Button open_dir;
+        Granite.Widgets.AlertView message;
 
         construct {
             settings = Settings.get_default ();
@@ -51,6 +52,9 @@ namespace FindFileConflicts {
             lb_manager = Services.LibraryManager.instance;
             lb_manager.scan_started.connect (
                 () => {
+                    message.title = _("Scan for conflict files");
+                    message.icon_name = "search";
+                    content.visible_child_name = "message";
                     spinner.active = true;
                     open_dir.sensitive = false;
                 });
@@ -67,8 +71,18 @@ namespace FindFileConflicts {
                 });
             lb_manager.check_for_conflicts_finished.connect (
                 () => {
-                    spinner.active = false;
-                    open_dir.sensitive = true;
+                    Idle.add (
+                        () => {
+                            spinner.active = false;
+                            open_dir.sensitive = true;
+
+                            if (content.visible_child_name == "message") {
+                                message.title = _("No conflict files found");
+                                message.icon_name = "dialog-information";
+                            }
+
+                            return false;
+                        });
                 });
             lb_manager.conflict_found.connect (
                 () => {
@@ -137,10 +151,18 @@ namespace FindFileConflicts {
             welcome.open_dir_clicked.connect (open_dir_action);
 
             var conflicts = new Widgets.Views.Conflicts ();
+            conflicts.solved.connect (() => {
+                content.visible_child_name = "message";
+                message.title = _("All conflicts solved");
+                message.icon_name = "dialog-information";
+            });
+
+            message = new Granite.Widgets.AlertView ("", "", "search");
 
             content = new Gtk.Stack ();
             content.add_named (welcome, "welcome");
             content.add_named (conflicts, "conflicts");
+            content.add_named (message, "message");
             this.add (content);
             this.show_all ();
         }
@@ -148,6 +170,7 @@ namespace FindFileConflicts {
         private void open_dir_action () {
             var dir = Utils.choose_folder ();
             lb_manager.scan_folder.begin (dir);
+            message.description = dir;
         }
 
 
