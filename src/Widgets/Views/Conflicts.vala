@@ -37,7 +37,6 @@ namespace FindFileConflicts.Widgets.Views {
             lb_manager = Services.LibraryManager.instance;
             lb_manager.conflict_found.connect (
                 (file1, file2) => {
-                    stdout.printf ("FOUND\n");
                     Idle.add (
                         () => {
                             add_conflict (file1, file2);
