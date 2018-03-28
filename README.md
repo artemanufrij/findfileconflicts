@@ -7,8 +7,9 @@
 ### Donate
 <a href="https://www.paypal.me/ArtemAnufrij">PayPal</a> | <a href="https://liberapay.com/Artem/donate">LiberaPay</a> | <a href="https://www.patreon.com/ArtemAnufrij">Patreon</a>
 
-coming soon:
+
 <p align="center">
+  coming soon:
   <a href="https://appcenter.elementary.io/com.github.artemanufrij.findfileconflicts">
     <img src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter">
   </a>
