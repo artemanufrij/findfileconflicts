@@ -34,8 +34,11 @@ namespace FindFileConflicts {
         Gtk.Stack content;
         Gtk.Spinner spinner;
         Gtk.MenuButton app_menu;
-        Gtk.Button open_dir;
+        Gtk.Button open_dir_btn;
+        Gtk.Button refresh_btn;
         Granite.Widgets.AlertView message;
+
+        string dir = "";
 
         construct {
             settings = Settings.get_default ();
@@ -52,29 +55,33 @@ namespace FindFileConflicts {
             lb_manager = Services.LibraryManager.instance;
             lb_manager.scan_started.connect (
                 () => {
-                    message.title = _("Scan for conflict files");
+                    message.title = _("Scaning for conflict files…");
                     message.icon_name = "search";
                     content.visible_child_name = "message";
                     spinner.active = true;
-                    open_dir.sensitive = false;
+                    open_dir_btn.sensitive = false;
+                    refresh_btn.hide ();
                 });
 
             lb_manager.scan_finished.connect (
                 () => {
                     spinner.active = false;
-                    open_dir.sensitive = true;
+                    open_dir_btn.sensitive = true;
+                    refresh_btn.show ();
                 });
             lb_manager.check_for_conflicts_begin.connect (
                 () => {
                     spinner.active = true;
-                    open_dir.sensitive = false;
+                    open_dir_btn.sensitive = false;
+                    refresh_btn.hide ();
                 });
             lb_manager.check_for_conflicts_finished.connect (
                 () => {
                     Idle.add (
                         () => {
                             spinner.active = false;
-                            open_dir.sensitive = true;
+                            open_dir_btn.sensitive = true;
+                            refresh_btn.show ();
 
                             if (content.visible_child_name == "message") {
                                 message.title = _("No conflict files found");
@@ -115,10 +122,10 @@ namespace FindFileConflicts {
             headerbar.get_style_context ().add_class ("default-decoration");
             this.set_titlebar (headerbar);
 
-            open_dir = new Gtk.Button.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR);
-            open_dir.tooltip_text = _ ("Open Project");
-            open_dir.clicked.connect (open_dir_action);
-            headerbar.pack_start (open_dir);
+            open_dir_btn = new Gtk.Button.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR);
+            open_dir_btn.tooltip_text = _ ("Open Folder");
+            open_dir_btn.clicked.connect (open_dir_action);
+            headerbar.pack_start (open_dir_btn);
 
             // SETTINGS MENU
             app_menu = new Gtk.MenuButton ();
@@ -143,6 +150,15 @@ namespace FindFileConflicts {
             app_menu.popup = settings_menu;
             headerbar.pack_end (app_menu);
 
+            // REFRESH
+            refresh_btn = new Gtk.Button.from_icon_name ("view-refresh-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+            refresh_btn.tooltip_text = _("Rescan");
+            refresh_btn.clicked.connect (
+                () => {
+                    lb_manager.scan_folder.begin (dir);
+                });
+            headerbar.pack_end (refresh_btn);
+
             // SPINNER
             spinner = new Gtk.Spinner ();
             headerbar.pack_end (spinner);
@@ -165,14 +181,14 @@ namespace FindFileConflicts {
             content.add_named (message, "message");
             this.add (content);
             this.show_all ();
+            refresh_btn.hide ();
         }
 
         private void open_dir_action () {
-            var dir = Utils.choose_folder ();
+            dir = Utils.choose_folder ();
             lb_manager.scan_folder.begin (dir);
             message.description = dir;
         }
-
 
         private void load_settings () {
             this.set_default_size (settings.window_width, settings.window_height);
