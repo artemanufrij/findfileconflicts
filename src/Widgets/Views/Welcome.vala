@@ -34,8 +34,8 @@ namespace FindFileConflicts.Widgets.Views {
         }
 
         private void build_ui () {
-            var welcome = new Granite.Widgets.Welcome (_ ("Find File Conflict"), _ ("Subtitle."));
-            welcome.append ("folder-documents", _ ("Open"), _ ("Choose a folder for checking its content for coflicts."));
+            var welcome = new Granite.Widgets.Welcome (_ ("Find File Conflicts"), _ ("Check file names."));
+            welcome.append ("folder-documents", _ ("Open"), _ ("Choose a folder for scanning its content for coflicts."));
             welcome.activated.connect (
                 (index) => {
                     switch (index) {
