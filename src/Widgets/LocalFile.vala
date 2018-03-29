@@ -39,42 +39,70 @@ namespace FindFileConflicts.Widgets {
         private void build_ui (bool show_separator) {
             var content = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
-            var trash_button = new Gtk.Button.from_icon_name ("user-trash-symbolic", Gtk.IconSize.BUTTON);
-            trash_button.get_style_context ().remove_class ("button");
-            trash_button.opacity = 0;
-            trash_button.margin = 6;
-            trash_button.enter_notify_event.connect (
+            Gtk.Button command_button;
+            if (file.conflict_type == Objects.ConflictType.SIMILAR) {
+                this.tooltip_text = _ ("Similar Files");
+                command_button = new Gtk.Button.from_icon_name ("user-trash-symbolic", Gtk.IconSize.BUTTON);
+                command_button.tooltip_text = _ ("Move into Trash");
+                command_button.clicked.connect (
+                    () => {
+                        try {
+                            if (file.file.trash ()) {
+                                removed ();
+                            }
+                        } catch (Error err) {
+                            warning (err.message);
+                        }
+                    });
+            }   else {
+                if (file.conflict_type == Objects.ConflictType.CHARS) {
+                    this.tooltip_text = _ ("Filename contains illegal chars");
+                } else if (file.conflict_type == Objects.ConflictType.LENGTH) {
+                    this.tooltip_text = _ ("Filename is too long");
+                }
+
+                command_button = new Gtk.Button.from_icon_name ("document-open-symbolic", Gtk.IconSize.BUTTON);
+                command_button.tooltip_text = _ ("Open Location");
+                command_button.clicked.connect (
+                    () => {
+                        try {
+                            Process.spawn_command_line_async ("xdg-open '%s'".printf (file.file.get_parent ().get_path ()));
+                        } catch (Error err) {
+                            warning (err.message);
+                        }
+                    });
+            }
+            command_button.get_style_context ().remove_class ("button");
+            command_button.opacity = 0;
+            command_button.margin = 6;
+            command_button.enter_notify_event.connect (
                 () => {
-                    trash_button.opacity = 1;
+                    command_button.opacity = 1;
                     return false;
                 });
-            trash_button.clicked.connect (
-                () => {
-                    try {
-                        if (file.file.trash ()) {
-                            removed ();
-                        }
-                    } catch (Error err) {
-                        warning (err.message);
-                    }
-                });
+
 
             this.enter_notify_event.connect (
                 () => {
-                    trash_button.opacity = 1;
+                    command_button.opacity = 1;
                     return false;
                 });
 
             this.leave_notify_event.connect (
                 () => {
-                    trash_button.opacity = 0;
+                    command_button.opacity = 0;
                     return false;
                 });
 
-            FileInfo info = file.file.query_info ("standard::icon", 0);
-            Icon icon = info.get_icon ();
-
-            var image = new Gtk.Image.from_gicon (icon, Gtk.IconSize.BUTTON);
+            Gtk.Image image;
+            try {
+                FileInfo info = file.file.query_info ("standard::icon", 0);
+                Icon icon = info.get_icon ();
+                image = new Gtk.Image.from_gicon (icon, Gtk.IconSize.BUTTON);
+            } catch (Error err) {
+                warning (err.message);
+                image = new Gtk.Image.from_icon_name ("default", Gtk.IconSize.BUTTON);
+            }
             image.margin_right = 6;
 
             var label = new Gtk.Label (file.title);
@@ -83,7 +111,7 @@ namespace FindFileConflicts.Widgets {
             var date = new Gtk.Label (file.date);
             date.margin = 6;
 
-            content.pack_start (trash_button, false, false);
+            content.pack_start (command_button, false, false);
             content.pack_start (image, false, false);
             content.pack_start (label, false, false);
             if (show_separator) {

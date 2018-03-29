@@ -62,18 +62,23 @@ namespace FindFileConflicts.Widgets.Views {
             this.show_all ();
         }
 
-        private void add_conflict (Objects.LocalFile file1, Objects.LocalFile file2) {
-            Widgets.FileConflict conflict = new Widgets.FileConflict (file1, file2);
-            conflicts.add (conflict);
-            conflict.solved.connect (
-                () => {
-                    conflict.destroy ();
-                    var count = conflicts.get_children ().length ();
-                    items_changed (count);
-                    if (count == 0) {
-                        solved ();
-                    }
-                });
+        private void add_conflict (Objects.LocalFile file1, Objects.LocalFile ? file2) {
+            if (file2 != null) {
+                var conflict = new Widgets.FilesConflict (file1, file2);
+                conflicts.add (conflict);
+                conflict.solved.connect (
+                    () => {
+                        conflict.destroy ();
+                        var count = conflicts.get_children ().length ();
+                        items_changed (count);
+                        if (count == 0) {
+                            solved ();
+                        }
+                    });
+            } else {
+                var conflict = new Widgets.IllegalFile (file1);
+                conflicts.add (conflict);
+            }
             items_changed (conflicts.get_children ().length ());
         }
 

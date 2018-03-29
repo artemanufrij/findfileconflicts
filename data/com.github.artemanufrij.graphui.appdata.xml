@@ -8,6 +8,12 @@
     <summary>Solve possible file conflicts.</summary>
     <description>
         <p>Helps to find file names which could have conflicts on Windows.</p>
+        <p>Checks:</p>
+        <ul>
+            <li>Similar file names like 'my document.txt' and 'My Document.txt'</li>
+            <li>Illegal chars like ':'</li>
+            <li>Too long file names</li>
+        </ul>
     </description>
     <categories>
         <category>Development</category>

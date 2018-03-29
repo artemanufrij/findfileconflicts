@@ -44,7 +44,7 @@ namespace FindFileConflicts.Services {
         public signal void scan_finished ();
         public signal void check_for_conflicts_begin ();
         public signal void check_for_conflicts_finished ();
-        public signal void conflict_found (Objects.LocalFile file1, Objects.LocalFile file2);
+        public signal void conflict_found (Objects.LocalFile file1, Objects.LocalFile? file2);
 
         string root = "";
         uint finish_timer = 0;
@@ -123,13 +123,20 @@ namespace FindFileConflicts.Services {
 
                             file1.conflict_type = Objects.ConflictType.LENGTH;
 
-                            conflict_found (file1, file1);
+                            conflict_found (file1, null);
 
                             continue;
                         }
 
                         // CHECK FOR ILLEGAL CHARS
+                        if (file1.title.index_of (":") > -1) {
+                            file1.has_conflict = true;
 
+                            file1.conflict_type = Objects.ConflictType.CHARS;
+
+                            conflict_found (file1, null);
+                            continue;
+                        }
 
                         // CHECK FOR SIMILAR FILE NAME
 

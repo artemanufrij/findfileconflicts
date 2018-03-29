@@ -32,7 +32,16 @@ namespace FindFileConflicts.Objects {
         public string path { get; private set; }
         public string path_down { get; private set; }
         public string title { get; private set; }
-        public File ? file { get; private set; default = null; }
+
+        File ? _file = null;
+        public File ? file {
+            get {
+                if (_file == null) {
+                    _file = File.new_for_path (path);
+                }
+                return _file;
+            }
+        }
         public ConflictType conflict_type { get; set; }
 
         public string _date = "";
@@ -56,10 +65,6 @@ namespace FindFileConflicts.Objects {
         }
 
         public void exclude_date () {
-            if (file == null) {
-                file = File.new_for_path (path);
-            }
-
             FileInfo info = null;
             try {
                 info = file.query_info ("time::*", 0);
