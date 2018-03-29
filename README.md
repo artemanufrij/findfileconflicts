@@ -17,6 +17,9 @@
 
 <br/>
 
+![screenshot](screenshots/Screenshot.png)
+![screenshot](screenshots/Screenshot_Conflicts.png)
+
 ## Install from Github.
 
 As first you need some packages
