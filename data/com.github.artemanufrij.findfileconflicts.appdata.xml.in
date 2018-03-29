@@ -12,7 +12,7 @@
         <ul>
             <li>Similar file names like 'my document.txt' and 'My Document.txt'</li>
             <li>Illegal chars like ':'</li>
-            <li>Too long file names</li>
+            <li>Too long file names (>360 chars)</li>
         </ul>
     </description>
     <categories>
@@ -41,7 +41,7 @@
         </screenshot>
     </screenshots>
     <releases>
-        <release version="1.0.3" date="2018-03-30">
+        <release version="1.0.4" date="2018-03-30">
             <description>
                 Initial Release
             </description>
