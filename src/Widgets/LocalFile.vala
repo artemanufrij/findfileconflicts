@@ -81,7 +81,6 @@ namespace FindFileConflicts.Widgets {
                     return false;
                 });
 
-
             this.enter_notify_event.connect (
                 () => {
                     command_button.opacity = 1;
