@@ -54,7 +54,7 @@ namespace FindFileConflicts.Widgets {
                             warning (err.message);
                         }
                     });
-            }   else {
+            } else {
                 if (file.conflict_type == Objects.ConflictType.CHARS) {
                     this.tooltip_text = _ ("Filename contains illegal chars");
                 } else if (file.conflict_type == Objects.ConflictType.LENGTH) {
@@ -72,6 +72,7 @@ namespace FindFileConflicts.Widgets {
                         }
                     });
             }
+
             command_button.get_style_context ().remove_class ("button");
             command_button.opacity = 0;
             command_button.margin = 6;
@@ -99,7 +100,7 @@ namespace FindFileConflicts.Widgets {
                 Icon icon = info.get_icon ();
                 image = new Gtk.Image.from_gicon (icon, Gtk.IconSize.BUTTON);
             } catch (Error err) {
-                warning (err.message);
+                            warning (err.message);
                 image = new Gtk.Image.from_icon_name ("default", Gtk.IconSize.BUTTON);
             }
             image.margin_right = 6;
