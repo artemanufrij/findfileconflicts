@@ -27,11 +27,11 @@
     <screenshots>
         <screenshot type="default">
             <caption>Welcome</caption>
-            <image>https://raw.githubusercontent.com/artemanufrij/graphui/master/screenshots/Screenshot.png</image>
+            <image>https://raw.githubusercontent.com/artemanufrij/findfileconflicts/master/screenshots/Screenshot.png</image>
         </screenshot>
         <screenshot>
             <caption>Conflicts</caption>
-            <image>https://raw.githubusercontent.com/artemanufrij/graphui/master/screenshots/Screenshot_Conflicts.png</image>
+            <image>https://raw.githubusercontent.com/artemanufrij/findfileconflicts/master/screenshots/Screenshot_Conflicts.png</image>
         </screenshot>
     </screenshots>
     <releases>
