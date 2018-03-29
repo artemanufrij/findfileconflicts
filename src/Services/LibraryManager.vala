@@ -116,6 +116,23 @@ namespace FindFileConflicts.Services {
                             continue;
                         }
 
+                        // CHECK FOR TO LONG FILENAME
+                        var basename = Path.get_basename (file1.path);
+                        if (basename.length >= 360) {
+                            file1.has_conflict = true;
+
+                            file1.conflict_type = Objects.ConflictType.LENGTH;
+
+                            conflict_found (file1, file1);
+
+                            continue;
+                        }
+
+                        // CHECK FOR ILLEGAL CHARS
+
+
+                        // CHECK FOR SIMILAR FILE NAME
+
                         var file2 = files.nth_data (i + 1);
                         if (file1.path_down == file2.path_down) {
                             file1.has_conflict = true;
@@ -123,6 +140,9 @@ namespace FindFileConflicts.Services {
 
                             file1.exclude_date ();
                             file2.exclude_date ();
+
+                            file1.conflict_type = Objects.ConflictType.SIMILAR;
+                            file2.conflict_type = Objects.ConflictType.SIMILAR;
 
                             if (file1.modified < file2.modified) {
                                 conflict_found (file1, file2);

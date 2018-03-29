@@ -26,11 +26,14 @@
  */
 
 namespace FindFileConflicts.Objects {
+    public enum ConflictType { SIMILAR, LENGTH, CHARS }
+
     public class LocalFile {
         public string path { get; private set; }
         public string path_down { get; private set; }
         public string title { get; private set; }
         public File ? file { get; private set; default = null; }
+        public ConflictType conflict_type { get; set; }
 
         public string _date = "";
         public string date {

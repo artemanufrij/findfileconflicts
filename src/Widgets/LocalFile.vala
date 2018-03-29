@@ -76,8 +76,10 @@ namespace FindFileConflicts.Widgets {
 
             var image = new Gtk.Image.from_gicon (icon, Gtk.IconSize.BUTTON);
             image.margin_right = 6;
+
             var label = new Gtk.Label (file.title);
             label.xalign = 0;
+
             var date = new Gtk.Label (file.date);
             date.margin = 6;
 
