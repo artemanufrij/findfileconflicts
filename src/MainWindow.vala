@@ -38,7 +38,7 @@ namespace FindFileConflicts {
         Gtk.Button refresh_btn;
         Granite.Widgets.AlertView message;
 
-        string dir = "";
+        string ? dir = null;
 
         construct {
             settings = Settings.get_default ();
@@ -55,7 +55,7 @@ namespace FindFileConflicts {
             lb_manager = Services.LibraryManager.instance;
             lb_manager.scan_started.connect (
                 () => {
-                    message.title = _("Scaning for conflict files…");
+                    message.title = _ ("Scaning for conflict files…");
                     message.icon_name = "search";
                     content.visible_child_name = "message";
                     spinner.active = true;
@@ -84,7 +84,7 @@ namespace FindFileConflicts {
                             refresh_btn.show ();
 
                             if (content.visible_child_name == "message") {
-                                message.title = _("No conflict files found");
+                                message.title = _ ("No conflict files found");
                                 message.icon_name = "dialog-information";
                             }
 
@@ -152,10 +152,12 @@ namespace FindFileConflicts {
 
             // REFRESH
             refresh_btn = new Gtk.Button.from_icon_name ("view-refresh-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-            refresh_btn.tooltip_text = _("Rescan");
+            refresh_btn.tooltip_text = _ ("Rescan");
             refresh_btn.clicked.connect (
                 () => {
-                    lb_manager.scan_folder.begin (dir);
+                    if (dir != null) {
+                        lb_manager.scan_folder.begin (dir);
+                    }
                 });
             headerbar.pack_end (refresh_btn);
 
@@ -167,16 +169,17 @@ namespace FindFileConflicts {
             welcome.open_dir_clicked.connect (open_dir_action);
 
             var conflicts = new Widgets.Views.Conflicts ();
-            conflicts.solved.connect (() => {
-                content.visible_child_name = "message";
-                message.title = _("All conflicts solved");
-                message.icon_name = "dialog-information";
-                headerbar.title = "Find File Conflicts";
-            });
+            conflicts.solved.connect (
+                () => {
+                    content.visible_child_name = "message";
+                    message.title = _ ("All conflicts solved");
+                    message.icon_name = "dialog-information";
+                    headerbar.title = "Find File Conflicts";
+                });
 
             conflicts.items_changed.connect (
                 (count) => {
-                    headerbar.title = _("%u conflicts found").printf (count);
+                    headerbar.title = _ ("%u conflicts found").printf (count);
                 });
 
             message = new Granite.Widgets.AlertView ("", "", "search");
@@ -192,8 +195,10 @@ namespace FindFileConflicts {
 
         private void open_dir_action () {
             dir = Utils.choose_folder ();
-            lb_manager.scan_folder.begin (dir);
-            message.description = dir;
+            if (dir != null) {
+                lb_manager.scan_folder.begin (dir);
+                message.description = dir;
+            }
         }
 
         private void load_settings () {
