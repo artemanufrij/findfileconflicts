@@ -63,14 +63,7 @@ namespace FindFileConflicts.Widgets.Views {
         }
 
         private void add_conflict (Objects.LocalFile file1, Objects.LocalFile file2) {
-            file1.exclude_date ();
-            file2.exclude_date ();
-            Widgets.FileConflict conflict = null;
-            if (file1.modified < file2.modified) {
-                conflict = new Widgets.FileConflict (file1, file2);
-            } else {
-                conflict = new Widgets.FileConflict (file2, file1);
-            }
+            Widgets.FileConflict conflict = new Widgets.FileConflict (file1, file2);
             conflicts.add (conflict);
             conflict.solved.connect (
                 ()=> {

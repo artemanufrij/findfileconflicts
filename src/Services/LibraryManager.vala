@@ -120,7 +120,15 @@ namespace FindFileConflicts.Services {
                         if (file1.path_down == file2.path_down) {
                             file1.has_conflict = true;
                             file2.has_conflict = true;
-                            conflict_found (file1, file2);
+
+                            file1.exclude_date ();
+                            file2.exclude_date ();
+
+                            if (file1.modified < file2.modified) {
+                                conflict_found (file1, file2);
+                            } else {
+                                conflict_found (file2, file1);
+                            }
                         }
                     }
 
