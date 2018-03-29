@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=File Conflicts Finder
+GenericName=File Conflicts Finder
+Comment=An app for finding file name conflicts
+Keywords=conflict;files;
+Exec=com.github.artemanufrij.findfileconflicts %U
+Icon=com.github.artemanufrij.findfileconflicts
+Terminal=false
+Type=Application
+Categories=Development;System;GNOME;GTK;
+X-GNOME-Gettext-Domain=com.github.artemanufrij.findfileconflicts
