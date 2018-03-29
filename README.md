@@ -1,6 +1,6 @@
 <div>
   <h1 align="center">Find File Conflicts</h1>
-  <h3 align="center"><br>Helps to find file names which could have conflicts on Windows<br/>(<code>New File</code> vs. <code>new file</code>)</h3>
+  <h3 align="center"><img src="data/icons/64/com.github.artemanufrij.findfileconflicts.svg"/><br>Helps to find file names which could have conflicts on Windows<br/>(<code>New File</code> vs. <code>new file</code>)</h3>
   <p align="center">Designed for <a href="https://elementary.io">elementary OS</a></p>
 </div>
 
