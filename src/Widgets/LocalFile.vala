@@ -31,18 +31,18 @@ namespace FindFileConflicts.Widgets {
 
         Objects.LocalFile file { get; private set; }
 
-        public LocalFile (Objects.LocalFile file) {
+        public LocalFile (Objects.LocalFile file, bool show_separator = true) {
             this.file = file;
-            build_ui ();
+            build_ui (show_separator);
         }
 
-        private void build_ui () {
-            var content = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
-            content.margin = 6;
+        private void build_ui (bool show_separator) {
+            var content = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
             var trash_button = new Gtk.Button.from_icon_name ("user-trash-symbolic", Gtk.IconSize.BUTTON);
             trash_button.get_style_context ().remove_class ("button");
             trash_button.opacity = 0;
+            trash_button.margin = 6;
             trash_button.enter_notify_event.connect (
                 () => {
                     trash_button.opacity = 1;
@@ -65,7 +65,7 @@ namespace FindFileConflicts.Widgets {
                     return false;
                 });
 
-                this.leave_notify_event.connect (
+            this.leave_notify_event.connect (
                 () => {
                     trash_button.opacity = 0;
                     return false;
@@ -74,9 +74,13 @@ namespace FindFileConflicts.Widgets {
             var label = new Gtk.Label (file.title);
             label.xalign = 0;
             var date = new Gtk.Label (file.date);
+            date.margin = 6;
 
             content.pack_start (trash_button, false, false);
-            content.pack_start (label, true, true);
+            content.pack_start (label, false, false);
+            if (show_separator) {
+                content.pack_end (new Gtk.Separator (Gtk.Orientation.VERTICAL), false, true);
+            }
             content.pack_end (date, false, false);
 
             this.add (content);

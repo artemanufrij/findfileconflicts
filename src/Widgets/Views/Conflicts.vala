@@ -30,6 +30,7 @@ namespace FindFileConflicts.Widgets.Views {
         Services.LibraryManager lb_manager;
 
         public signal void solved ();
+        public signal void items_changed (uint count);
 
         Gtk.ListBox conflicts;
 
@@ -74,10 +75,14 @@ namespace FindFileConflicts.Widgets.Views {
             conflict.solved.connect (
                 ()=> {
                     conflict.destroy ();
-                    if (conflicts.get_children ().length () == 0) {
+                    var count = conflicts.get_children ().length ();
+                    items_changed (count);
+                    if (count == 0) {
+
                         solved ();
                     }
                 });
+            items_changed (conflicts.get_children ().length ());
         }
 
         private void reset () {

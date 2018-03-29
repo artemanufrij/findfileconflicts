@@ -171,7 +171,13 @@ namespace FindFileConflicts {
                 content.visible_child_name = "message";
                 message.title = _("All conflicts solved");
                 message.icon_name = "dialog-information";
+                headerbar.title = "Find File Conflicts";
             });
+
+            conflicts.items_changed.connect (
+                (count) => {
+                    headerbar.title = _("%u conflicts found").printf (count);
+                });
 
             message = new Granite.Widgets.AlertView ("", "", "search");
 

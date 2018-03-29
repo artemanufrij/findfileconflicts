@@ -41,7 +41,7 @@ namespace FindFileConflicts.Widgets {
 
         private void build_ui () {
             var content = new Gtk.Grid ();
-            content.column_spacing = 6;
+            content.column_homogeneous = true;
 
             var file1_widget = new Widgets.LocalFile (file1);
             file1_widget.removed.connect (
@@ -49,7 +49,8 @@ namespace FindFileConflicts.Widgets {
                     solved ();
                 });
             file1_widget.expand = true;
-            var file2_widget = new Widgets.LocalFile (file2);
+
+            var file2_widget = new Widgets.LocalFile (file2, false);
             file2_widget.removed.connect (
                 () => {
                     solved ();
@@ -57,8 +58,7 @@ namespace FindFileConflicts.Widgets {
             file2_widget.expand = true;
 
             content.attach (file1_widget, 0, 0);
-            content.attach (new Gtk.Separator (Gtk.Orientation.VERTICAL), 1, 0);
-            content.attach (file2_widget, 2, 0);
+            content.attach (file2_widget, 1, 0);
 
             this.add (content);
             this.show_all ();
