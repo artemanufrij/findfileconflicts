@@ -66,12 +66,11 @@ namespace FindFileConflicts.Widgets.Views {
             Widgets.FileConflict conflict = new Widgets.FileConflict (file1, file2);
             conflicts.add (conflict);
             conflict.solved.connect (
-                ()=> {
+                () => {
                     conflict.destroy ();
                     var count = conflicts.get_children ().length ();
                     items_changed (count);
                     if (count == 0) {
-
                         solved ();
                     }
                 });

@@ -44,10 +44,9 @@ namespace FindFileConflicts {
             settings = Settings.get_default ();
         }
 
-        private FindFileConflictsApp () {        }
+        private FindFileConflictsApp () {}
 
         public MainWindow mainwindow { get; private set; default = null; }
-
 
         protected override void activate () {
             if (mainwindow == null) {

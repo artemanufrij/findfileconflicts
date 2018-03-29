@@ -71,12 +71,18 @@ namespace FindFileConflicts.Widgets {
                     return false;
                 });
 
+            FileInfo info = file.file.query_info ("standard::icon", 0);
+            Icon icon = info.get_icon ();
+
+            var image = new Gtk.Image.from_gicon (icon, Gtk.IconSize.BUTTON);
+            image.margin_right = 6;
             var label = new Gtk.Label (file.title);
             label.xalign = 0;
             var date = new Gtk.Label (file.date);
             date.margin = 6;
 
             content.pack_start (trash_button, false, false);
+            content.pack_start (image, false, false);
             content.pack_start (label, false, false);
             if (show_separator) {
                 content.pack_end (new Gtk.Separator (Gtk.Orientation.VERTICAL), false, true);
