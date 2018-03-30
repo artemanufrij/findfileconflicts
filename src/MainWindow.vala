@@ -55,6 +55,7 @@ namespace FindFileConflicts {
             lb_manager = Services.LibraryManager.instance;
             lb_manager.scan_started.connect (
                 () => {
+                    headerbar.title = "Find File Conflicts";
                     message.title = _ ("Scaning for conflict files…");
                     message.icon_name = "search";
                     content.visible_child_name = "message";
@@ -199,6 +200,7 @@ namespace FindFileConflicts {
         public void rescan () {
             if (dir != null) {
                 lb_manager.scan_folder.begin (dir);
+                message.description = dir;
             }
         }
 
