@@ -55,11 +55,18 @@ namespace FindFileConflicts.Widgets {
                         }
                     });
             } else {
-                if (file.conflict_type == Objects.ConflictType.CHARS) {
+                switch (file.conflict_type) {
+                case Objects.ConflictType.CHARS :
                     this.tooltip_text = _ ("Filename contains illegal chars");
-                } else if (file.conflict_type == Objects.ConflictType.LENGTH) {
+                    break;
+                case Objects.ConflictType.LENGTH :
                     this.tooltip_text = _ ("Filename is too long");
+                    break;
+                case Objects.ConflictType.DOTS :
+                    this.tooltip_text = _ ("Filename contains double dots '..'");
+                    break;
                 }
+
 
                 command_button = new Gtk.Button.from_icon_name ("document-open-symbolic", Gtk.IconSize.BUTTON);
                 command_button.tooltip_text = _ ("Open Location");

@@ -26,7 +26,7 @@
  */
 
 namespace FindFileConflicts.Objects {
-    public enum ConflictType { SIMILAR, LENGTH, CHARS }
+    public enum ConflictType { SIMILAR, LENGTH, CHARS, DOTS }
 
     public class LocalFile {
         public string path { get; private set; }
@@ -50,7 +50,6 @@ namespace FindFileConflicts.Objects {
                 if (_date == "") {
                     exclude_date ();
                 }
-
                 return _date;
             }
         }

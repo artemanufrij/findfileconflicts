@@ -42,9 +42,16 @@ namespace FindFileConflicts {
         construct {
             this.application_id = "com.github.artemanufrij.findfileconflicts";
             settings = Settings.get_default ();
+
+            var toggle_details_reset = action_generator ("F5", "rescan");
+            toggle_details_reset.activate.connect (
+                () => {
+                    mainwindow.rescan ();
+                });
         }
 
-        private FindFileConflictsApp () {}
+        private FindFileConflictsApp () {
+        }
 
         public MainWindow mainwindow { get; private set; default = null; }
 
@@ -54,6 +61,13 @@ namespace FindFileConflicts {
                 mainwindow.application = this;
             }
             mainwindow.present ();
+        }
+
+        private SimpleAction action_generator (string command, string action) {
+            var return_value = new SimpleAction (action, null);
+            add_action (return_value);
+            add_accelerator (command, "app.%s".printf (action), null);
+            return return_value;
         }
     }
 }

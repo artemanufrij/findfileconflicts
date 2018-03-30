@@ -44,7 +44,7 @@ namespace FindFileConflicts.Services {
         public signal void scan_finished ();
         public signal void check_for_conflicts_begin ();
         public signal void check_for_conflicts_finished ();
-        public signal void conflict_found (Objects.LocalFile file1, Objects.LocalFile? file2);
+        public signal void conflict_found (Objects.LocalFile file1, Objects.LocalFile ? file2);
 
         string root = "";
         uint finish_timer = 0;
@@ -89,7 +89,7 @@ namespace FindFileConflicts.Services {
                 }
 
                 finish_timer = Timeout.add (
-                    1000,
+                    500,
                     () => {
                         if (finish_timer > 0) {
                             Source.remove (finish_timer);
@@ -110,51 +110,67 @@ namespace FindFileConflicts.Services {
                         (a, b) => {
                             return a.path_down.collate (b.path_down);
                         });
-                    for (var i = 0; i < files.length () - 1; i++) {
+                    for (var i = 0; i < files.length (); i++) {
                         var file1 = files.nth_data (i);
                         if (file1.has_conflict) {
                             continue;
                         }
 
                         // CHECK FOR TO LONG FILENAME
-                        var basename = Path.get_basename (file1.path);
-                        if (basename.length >= 360) {
-                            file1.has_conflict = true;
+                        if (settings.use_rule_length) {
+                            var basename = Path.get_basename (file1.path);
+                            if (basename.length >= 360) {
+                                file1.has_conflict = true;
 
-                            file1.conflict_type = Objects.ConflictType.LENGTH;
+                                file1.conflict_type = Objects.ConflictType.LENGTH;
 
-                            conflict_found (file1, null);
+                                    conflict_found (file1, null);
 
-                            continue;
+                                continue;
+                            }
                         }
 
                         // CHECK FOR ILLEGAL CHARS
-                        if (file1.title.index_of (":") > -1) {
-                            file1.has_conflict = true;
+                        if (settings.use_rule_chars) {
+                            if (file1.title.index_of (":") > -1) {
+                                file1.has_conflict = true;
 
-                            file1.conflict_type = Objects.ConflictType.CHARS;
+                                file1.conflict_type = Objects.ConflictType.CHARS;
 
-                            conflict_found (file1, null);
-                            continue;
+                                    conflict_found (file1, null);
+                                continue;
+                            }
+                        }
+
+                        if (settings.use_rule_dots) {
+                            if (file1.title.index_of ("..") > -1) {
+                                file1.has_conflict = true;
+
+                                file1.conflict_type = Objects.ConflictType.DOTS;
+
+                                    conflict_found (file1, null);
+                                continue;
+                            }
                         }
 
                         // CHECK FOR SIMILAR FILE NAME
+                        if (settings.use_rule_similar && files.length () > i + 1) {
+                            var file2 = files.nth_data (i + 1);
+                            if (file1.path_down == file2.path_down) {
+                                file1.has_conflict = true;
+                                file2.has_conflict = true;
 
-                        var file2 = files.nth_data (i + 1);
-                        if (file1.path_down == file2.path_down) {
-                            file1.has_conflict = true;
-                            file2.has_conflict = true;
+                                file1.exclude_date ();
+                                file2.exclude_date ();
 
-                            file1.exclude_date ();
-                            file2.exclude_date ();
+                                file1.conflict_type = Objects.ConflictType.SIMILAR;
+                                file2.conflict_type = Objects.ConflictType.SIMILAR;
 
-                            file1.conflict_type = Objects.ConflictType.SIMILAR;
-                            file2.conflict_type = Objects.ConflictType.SIMILAR;
-
-                            if (file1.modified < file2.modified) {
-                                conflict_found (file1, file2);
-                            } else {
-                                conflict_found (file2, file1);
+                                if (file1.modified < file2.modified) {
+                                    conflict_found (file1, file2);
+                                } else {
+                                    conflict_found (file2, file1);
+                                }
                             }
                         }
                     }

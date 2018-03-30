@@ -155,9 +155,7 @@ namespace FindFileConflicts {
             refresh_btn.tooltip_text = _ ("Rescan");
             refresh_btn.clicked.connect (
                 () => {
-                    if (dir != null) {
-                        lb_manager.scan_folder.begin (dir);
-                    }
+                    rescan ();
                 });
             headerbar.pack_end (refresh_btn);
 
@@ -195,9 +193,12 @@ namespace FindFileConflicts {
 
         private void open_dir_action () {
             dir = Utils.choose_folder ();
+            rescan ();
+        }
+
+        public void rescan () {
             if (dir != null) {
                 lb_manager.scan_folder.begin (dir);
-                message.description = dir;
             }
         }
 

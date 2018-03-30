@@ -40,6 +40,10 @@ namespace FindFileConflicts {
         public int window_y { get; set; }
         public bool window_maximized { get; set; }
         public bool use_dark_theme { get; set; }
+        public bool use_rule_similar { get; set; }
+        public bool use_rule_length { get; set; }
+        public bool use_rule_chars { get; set; }
+        public bool use_rule_dots { get; set; }
 
         private Settings () {
             base ("com.github.artemanufrij.findfileconflicts");

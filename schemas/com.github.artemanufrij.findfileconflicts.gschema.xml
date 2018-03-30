@@ -30,5 +30,25 @@
 			<summary>Use Dark Theme.</summary>
 			<description>Use Dark Theme.</description>
 		</key>
+		<key name="use-rule-similar" type="b">
+			<default>true</default>
+			<summary>Rule similar.</summary>
+			<description>Rule similar.</description>
+		</key>
+		<key name="use-rule-length" type="b">
+			<default>true</default>
+			<summary>Rule length.</summary>
+			<description>Rule length.</description>
+		</key>
+		<key name="use-rule-chars" type="b">
+			<default>true</default>
+			<summary>Rule chars.</summary>
+			<description>Rule chars.</description>
+		</key>
+		<key name="use-rule-dots" type="b">
+			<default>true</default>
+			<summary>Rule dots.</summary>
+			<description>Rule dots.</description>
+		</key>
 	</schema>
 </schemalist>
