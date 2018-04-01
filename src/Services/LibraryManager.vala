@@ -121,22 +121,18 @@ namespace FindFileConflicts.Services {
                             var basename = Path.get_basename (file1.path);
                             if (basename.length >= 360) {
                                 file1.has_conflict = true;
-
                                 file1.conflict_type = Objects.ConflictType.LENGTH;
-
                                     conflict_found (file1, null);
-
                                 continue;
                             }
                         }
 
                         // CHECK FOR ILLEGAL CHARS
                         if (settings.use_rule_chars) {
-                            if (file1.title.index_of (":") > -1) {
+                            if (file1.title.index_of (":") > -1
+                                || file1.title.has_suffix (" ")) {
                                 file1.has_conflict = true;
-
                                 file1.conflict_type = Objects.ConflictType.CHARS;
-
                                     conflict_found (file1, null);
                                 continue;
                             }
@@ -145,9 +141,7 @@ namespace FindFileConflicts.Services {
                         if (settings.use_rule_dots) {
                             if (file1.title.index_of ("..") > -1) {
                                 file1.has_conflict = true;
-
                                 file1.conflict_type = Objects.ConflictType.DOTS;
-
                                     conflict_found (file1, null);
                                 continue;
                             }
