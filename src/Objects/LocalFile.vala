@@ -29,9 +29,12 @@ namespace FindFileConflicts.Objects {
     public enum ConflictType { SIMILAR, LENGTH, CHARS, DOTS }
 
     public class LocalFile {
+        public signal void hash_created (string hash);
+
         public string path { get; private set; }
         public string path_down { get; private set; }
         public string title { get; private set; }
+        public string hash { get; private set; default = ""; }
 
         File ? _file = null;
         public File ? file {
@@ -81,6 +84,24 @@ namespace FindFileConflicts.Objects {
                 _date = datetime.format ("%e. %b, %Y - %T").strip ();
                 datetime = null;
             }
+        }
+
+        public void calculate_hash () {
+            new Thread<void*> (
+                "", () => {
+                    var checksum = new Checksum (ChecksumType.MD5);
+
+                    FileStream stream = FileStream.open (path, "r");
+                    uint8 fbuf[100];
+                    size_t size;
+                    while ((size = stream.read (fbuf)) > 0) {
+                        checksum.update (fbuf, size);
+                    }
+                    stream = null;
+                    hash = checksum.get_string ();
+                    hash_created (hash);
+                    return null;
+                });
         }
     }
 }

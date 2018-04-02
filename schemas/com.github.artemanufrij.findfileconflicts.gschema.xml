@@ -50,5 +50,10 @@
 			<summary>Rule dots.</summary>
 			<description>Rule dots.</description>
 		</key>
+		<key name="use-rule-duplicates" type="b">
+			<default>true</default>
+			<summary>Rule duplicates.</summary>
+			<description>Rule duplicates.</description>
+		</key>
 	</schema>
 </schemalist>

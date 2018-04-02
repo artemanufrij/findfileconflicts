@@ -119,6 +119,13 @@ namespace FindFileConflicts.Dialogs {
                     settings.use_rule_dots = use_rule_dots.active;
                 });
 
+            var use_rule_duplicates = new Gtk.Switch ();
+            use_rule_duplicates.active = settings.use_rule_duplicates;
+            use_rule_duplicates.notify["active"].connect (
+                () => {
+                    settings.use_rule_duplicates = use_rule_duplicates.active;
+                });
+
             grid.attach (label_generator (_ ("Similar File Name")), 0, 0);
             grid.attach (use_rule_similar, 1, 0);
             grid.attach (label_generator (_ ("Too Long File Name")), 0, 1);
@@ -127,6 +134,8 @@ namespace FindFileConflicts.Dialogs {
             grid.attach (use_rule_chars, 1, 2);
             grid.attach (label_generator (_ ("Double Dots")), 0, 3);
             grid.attach (use_rule_dots, 1, 3);
+            grid.attach (label_generator (_ ("Check for Duplicates")), 0, 4);
+            grid.attach (use_rule_duplicates, 1, 4);
 
             return grid;
         }
