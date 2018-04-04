@@ -51,7 +51,7 @@
 			<description>Rule dots.</description>
 		</key>
 		<key name="use-rule-duplicates" type="b">
-			<default>true</default>
+			<default>false</default>
 			<summary>Rule duplicates.</summary>
 			<description>Rule duplicates.</description>
 		</key>

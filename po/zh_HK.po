@@ -1,0 +1,138 @@
+# Chinese translations for com.github.artemanufrij.findfileconflicts package.
+# Copyright (C) 2018 THE com.github.artemanufrij.findfileconflicts'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.artemanufrij.findfileconflicts package.
+# Automatically generated, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.artemanufrij.findfileconflicts\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-04 18:32+0200\n"
+"PO-Revision-Date: 2018-04-04 18:32+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: zh_HK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/MainWindow.vala:59
+msgid "Scaning for conflict files…"
+msgstr ""
+
+#: src/MainWindow.vala:88
+msgid "No conflict files found"
+msgstr ""
+
+#: src/MainWindow.vala:127
+msgid "Open Folder"
+msgstr ""
+
+#: src/MainWindow.vala:142
+msgid "Preferences"
+msgstr ""
+
+#: src/MainWindow.vala:156
+msgid "Rescan"
+msgstr ""
+
+#: src/MainWindow.vala:174
+msgid "All conflicts solved"
+msgstr ""
+
+#: src/MainWindow.vala:181
+#, c-format
+msgid "%u conflicts found"
+msgstr ""
+
+#: src/Dialogs/Preferences.vala:54
+msgid "General"
+msgstr ""
+
+#: src/Dialogs/Preferences.vala:55
+msgid "Rules"
+msgstr ""
+
+#: src/Dialogs/Preferences.vala:60
+msgid "Close"
+msgstr ""
+
+#: src/Dialogs/Preferences.vala:82
+msgid "Use Dark Theme"
+msgstr ""
+
+#: src/Dialogs/Preferences.vala:129
+msgid "Similar File Name"
+msgstr ""
+
+#: src/Dialogs/Preferences.vala:131
+msgid "Too Long File Name"
+msgstr ""
+
+#: src/Dialogs/Preferences.vala:133
+msgid "Illegal Chars"
+msgstr ""
+
+#: src/Dialogs/Preferences.vala:135
+msgid "Double Dots"
+msgstr ""
+
+#: src/Dialogs/Preferences.vala:137
+msgid "Check for Duplicates"
+msgstr ""
+
+#: src/Widgets/LocalFile.vala:44
+msgid "Similar Files"
+msgstr ""
+
+#: src/Widgets/LocalFile.vala:46
+msgid "Move into Trash"
+msgstr ""
+
+#: src/Widgets/LocalFile.vala:60
+msgid "Filename contains illegal chars"
+msgstr ""
+
+#: src/Widgets/LocalFile.vala:63
+msgid "Filename is too long"
+msgstr ""
+
+#: src/Widgets/LocalFile.vala:66
+msgid "Filename contains double dots '..'"
+msgstr ""
+
+#: src/Widgets/LocalFile.vala:72
+msgid "Open Location"
+msgstr ""
+
+#: src/Widgets/Views/Welcome.vala:37
+msgid "Find File Conflicts"
+msgstr ""
+
+#: src/Widgets/Views/Welcome.vala:37
+msgid "Check file names."
+msgstr ""
+
+#: src/Widgets/Views/Welcome.vala:38
+msgid "Open"
+msgstr ""
+
+#: src/Widgets/Views/Welcome.vala:38
+msgid "Choose a folder for scanning its content for coflicts."
+msgstr ""
+
+#: src/Utils/Utils.vala:41
+msgid "Select a folder."
+msgstr ""
+
+#: src/Utils/Utils.vala:42
+msgid "_Cancel"
+msgstr ""
+
+#: src/Utils/Utils.vala:43
+msgid "_Open"
+msgstr ""
+
+#: src/Utils/Utils.vala:46
+msgid "Folder"
+msgstr ""

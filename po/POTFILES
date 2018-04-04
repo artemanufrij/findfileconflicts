@@ -1,0 +1,13 @@
+src/Application.vala
+src/MainWindow.vala
+src/Settings.vala
+src/Objects/LocalFile.vala
+src/Services/LocalFilesManager.vala
+src/Services/LibraryManager.vala
+src/Dialogs/Preferences.vala
+src/Widgets/LocalFile.vala
+src/Widgets/FilesConflict.vala
+src/Widgets/IllegalFile.vala
+src/Widgets/Views/Conflicts.vala
+src/Widgets/Views/Welcome.vala
+src/Utils/Utils.vala
