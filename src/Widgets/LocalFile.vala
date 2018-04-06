@@ -67,7 +67,6 @@ namespace FindFileConflicts.Widgets {
                     break;
                 }
 
-
                 command_button = new Gtk.Button.from_icon_name ("document-open-symbolic", Gtk.IconSize.BUTTON);
                 command_button.tooltip_text = _ ("Open Location");
                 command_button.clicked.connect (
