@@ -28,12 +28,14 @@ i18n.merge_file(
     install_dir: join_paths(get_option('datadir'), 'metainfo')
 )
 
-desktop_file_validate = find_program('desktop-file-validate', required:false)
-
-if desktop_file_validate.found()
-  test (
+test(
     'Validate desktop file',
-    desktop_file_validate,
-    args: join_paths(meson.current_build_dir (), meson.project_name() + '.desktop')
-  )
-endif
+    find_program('desktop-file-validate'),
+    args : join_paths(meson.current_build_dir(), meson.project_name() + '.desktop')
+)
+
+test(
+    'Validate appdata file',
+    find_program('appstreamcli'),
+    args : ['validate', join_paths(meson.current_build_dir(), meson.project_name() + '.appdata.xml')]
+)
