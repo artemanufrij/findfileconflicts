@@ -56,12 +56,15 @@ namespace FindFileConflicts {
             lb_manager.scan_started.connect (
                 () => {
                     headerbar.title = "Find File Conflicts";
-                    message.title = _ ("Scaning for conflict files…");
                     message.icon_name = "search";
                     content.visible_child_name = "message";
                     spinner.active = true;
                     open_dir_btn.sensitive = false;
                     refresh_btn.hide ();
+                });
+            lb_manager.files_found.connect (
+                (count) => {
+                    message.title = _ ("Scaning for conflict files… (%u found)").printf (count);
                 });
 
             lb_manager.scan_finished.connect (
@@ -194,7 +197,7 @@ namespace FindFileConflicts {
 
         private void open_dir_action () {
             dir = Utils.choose_folder ();
-            rescan ();
+                    rescan ();
         }
 
         public void rescan () {

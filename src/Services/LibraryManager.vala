@@ -45,9 +45,13 @@ namespace FindFileConflicts.Services {
         public signal void check_for_conflicts_begin ();
         public signal void check_for_conflicts_finished ();
         public signal void conflict_found (Objects.LocalFile file1, Objects.LocalFile ? file2);
+        public signal void files_found (uint count);
+        public signal void files_checked (uint count);
 
         string root = "";
         uint finish_timer = 0;
+        uint found_timer = 0;
+        uint checked_timer = 0;
         GLib.List<Objects.LocalFile> files = null;
 
         construct {
@@ -60,6 +64,11 @@ namespace FindFileConflicts.Services {
             scan_finished.connect_after (
                 () => {
                     check_for_conflicts.begin ();
+                    if (found_timer != 0) {
+                        Source.remove (found_timer);
+                        found_timer = 0;
+                    }
+                    start_checked_pulling ();
                 });
         }
 
@@ -71,14 +80,32 @@ namespace FindFileConflicts.Services {
             root = path;
             lf_manager.scan (path);
             call_finish_timer ();
+            start_found_pulling ();
         }
 
         public void found_local_file (string path) {
             call_finish_timer ();
             var file = new Objects.LocalFile (path, root);
-            lock (files) {
+            //lock (files) {
                 files.append (file);
-            }
+            //}
+        }
+
+        private void start_found_pulling () {
+            found_timer = Timeout.add (
+                250,
+                () => {
+                    Idle.add (
+                        () => {
+                            files_found (files.length ());
+                            return false;
+                        });
+                    return true;
+                });
+        }
+
+        private void start_checked_pulling () {
+
         }
 
         private void call_finish_timer () {
