@@ -46,12 +46,10 @@ namespace FindFileConflicts.Services {
         public signal void check_for_conflicts_finished ();
         public signal void conflict_found (Objects.LocalFile file1, Objects.LocalFile ? file2);
         public signal void files_found (uint count);
-        public signal void files_checked (uint count);
 
         string root = "";
         uint finish_timer = 0;
         uint found_timer = 0;
-        uint checked_timer = 0;
         GLib.List<Objects.LocalFile> files = null;
 
         construct {
@@ -68,7 +66,6 @@ namespace FindFileConflicts.Services {
                         Source.remove (found_timer);
                         found_timer = 0;
                     }
-                    start_checked_pulling ();
                 });
         }
 
@@ -84,11 +81,11 @@ namespace FindFileConflicts.Services {
         }
 
         public void found_local_file (string path) {
-            call_finish_timer ();
             var file = new Objects.LocalFile (path, root);
-            //lock (files) {
+            lock (files) {
                 files.append (file);
-            //}
+                call_finish_timer ();
+            }
         }
 
         private void start_found_pulling () {
@@ -105,28 +102,22 @@ namespace FindFileConflicts.Services {
                 });
         }
 
-        private void start_checked_pulling () {
-
-        }
-
         private void call_finish_timer () {
-            lock (finish_timer) {
-                if (finish_timer > 0) {
-                    Source.remove (finish_timer);
-                    finish_timer = 0;
-                }
-
-                finish_timer = Timeout.add (
-                    500,
-                    () => {
-                        if (finish_timer > 0) {
-                            Source.remove (finish_timer);
-                            finish_timer = 0;
-                        }
-                        scan_finished ();
-                        return false;
-                    });
+            if (finish_timer > 0) {
+                Source.remove (finish_timer);
+                finish_timer = 0;
             }
+
+            finish_timer = Timeout.add (
+                500,
+                () => {
+                    if (finish_timer > 0) {
+                        Source.remove (finish_timer);
+                        finish_timer = 0;
+                    }
+                    scan_finished ();
+                    return false;
+                });
         }
 
         private async void check_for_conflicts () {
