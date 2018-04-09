@@ -95,9 +95,10 @@ namespace FindFileConflicts.Services {
             found_timer = Timeout.add (
                 250,
                 () => {
+                    var l = files.length ();
                     Idle.add (
                         () => {
-                            files_found (files.length ());
+                            files_found (l);
                             return false;
                         });
                     return true;
