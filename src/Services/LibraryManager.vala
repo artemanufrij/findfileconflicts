@@ -150,9 +150,7 @@ namespace FindFileConflicts.Services {
 
                     l = files.length;
                     i = -1;
-                    stdout.printf ("%d of %u\n", i, l);
                     while (i < (int)l - 1) {
-                        stdout.printf ("%d of %u\n", i, l);
                         i++;
                         var file1 = files.data [i];
                         if (file1.has_conflict) {
@@ -192,7 +190,6 @@ namespace FindFileConflicts.Services {
 
                         // CHECK FOR SIMILAR FILE NAME
                         uint next = i + 1;
-                        stdout.printf ("Next: %u\n", next);
                         if (settings.use_rule_similar && l > next) {
                             var file2 = files.data [next];
                             if (file1.path_down == file2.path_down) {
