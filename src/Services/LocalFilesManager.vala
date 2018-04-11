@@ -44,31 +44,34 @@ namespace FindFileConflicts.Services {
 
         public void scan (string path) {
             scan_started ();
-            scan_local_files.begin (path);
+            new Thread<void*> (
+                "scan",
+                () => {
+                    scan_local_files.begin (path);
+                    return null;
+                });
         }
 
         private async void scan_local_files (string path) {
-            new Thread<void*> ("scan_local_files", () => {
-                File directory = File.new_for_path (path);
-                try {
-                    var children = directory.enumerate_children ("standard::*", GLib.FileQueryInfoFlags.NONE);
-                    FileInfo file_info;
+            File directory = File.new_for_path (path);
+            try {
+                var children = directory.enumerate_children ("standard::*", GLib.FileQueryInfoFlags.NONE);
+                FileInfo file_info;
 
-                    while ((file_info = children.next_file ()) != null) {
-                        if (file_info.get_file_type () == FileType.DIRECTORY) {
-                            scan_local_files.begin (GLib.Path.build_filename (path, file_info.get_name ()));
-                        } else {
-                            found_file (GLib.Path.build_filename (path, file_info.get_name ()));
-                        }
+                while ((file_info = children.next_file ()) != null) {
+                    if (file_info.get_file_type () == FileType.DIRECTORY) {
+                        scan_local_files.begin (GLib.Path.build_filename (path, file_info.get_name ()));
+                    } else {
+                        found_file (GLib.Path.build_filename (path, file_info.get_name ()));
                     }
-                    children.close ();
-                    children.dispose ();
-                } catch (Error err) {
-                    warning (err.message);
                 }
-                directory.dispose ();
-                return null;
-            });
+
+                children.close ();
+                children.dispose ();
+            } catch (Error err) {
+                warning (err.message);
+            }
+            directory.dispose ();
         }
     }
 }

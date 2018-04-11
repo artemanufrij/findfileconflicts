@@ -46,11 +46,14 @@ namespace FindFileConflicts.Services {
         public signal void check_for_conflicts_finished ();
         public signal void conflict_found (Objects.LocalFile file1, Objects.LocalFile ? file2);
         public signal void files_found (uint count);
+        public signal void files_checked (uint count, uint total);
 
         string root = "";
         uint finish_timer = 0;
         uint found_timer = 0;
-        GLib.List<Objects.LocalFile> files = null;
+        uint checked_timer = 0;
+        uint i;
+        GLib.GenericArray<Objects.LocalFile> files;
 
         construct {
             settings = Settings.get_default ();
@@ -73,7 +76,7 @@ namespace FindFileConflicts.Services {
         }
 
         public async void scan_folder (string path) {
-            files = new GLib.List<Objects.LocalFile> ();
+            files = new  GLib.GenericArray<Objects.LocalFile> ();
             root = path;
             lf_manager.scan (path);
             call_finish_timer ();
@@ -82,20 +85,32 @@ namespace FindFileConflicts.Services {
 
         public void found_local_file (string path) {
             var file = new Objects.LocalFile (path, root);
-            lock (files) {
-                files.append (file);
-                call_finish_timer ();
-            }
+            files.add (file);
+            call_finish_timer ();
         }
 
         private void start_found_pulling () {
             found_timer = Timeout.add (
                 250,
                 () => {
-                    var l = files.length ();
+                    var l = files.length ;
                     Idle.add (
                         () => {
                             files_found (l);
+                            return false;
+                        });
+                    return true;
+                });
+        }
+
+        private void start_checked_pulling () {
+            var l = files.length ;
+            checked_timer = Timeout.add (
+                250,
+                () => {
+                    Idle.add (
+                        () => {
+                            files_checked (i, l);
                             return false;
                         });
                     return true;
@@ -129,8 +144,14 @@ namespace FindFileConflicts.Services {
                         (a, b) => {
                             return a.path_down.collate (b.path_down);
                         });
-                    for (var i = 0; i < files.length (); i++) {
-                        var file1 = files.nth_data (i);
+
+                    start_checked_pulling ();
+
+                    var l = files.length;
+                    i = -1;
+                    while (i < l) {
+                        i++;
+                        var file1 = files.data [i];
                         if (file1.has_conflict) {
                             continue;
                         }
@@ -138,7 +159,7 @@ namespace FindFileConflicts.Services {
                         // CHECK FOR TO LONG FILENAME
                         if (settings.use_rule_length) {
                             var basename = Path.get_basename (file1.path);
-                            if (basename.length >= 360) {
+                            if (basename.length >= 260) {
                                 file1.has_conflict = true;
                                 file1.conflict_type = Objects.ConflictType.LENGTH;
                                     conflict_found (file1, null);
@@ -167,8 +188,8 @@ namespace FindFileConflicts.Services {
                         }
 
                         // CHECK FOR SIMILAR FILE NAME
-                        if (settings.use_rule_similar && files.length () > i + 1) {
-                            var file2 = files.nth_data (i + 1);
+                        if (settings.use_rule_similar && l > i + 1) {
+                            var file2 = files.data [i + 1];
                             if (file1.path_down == file2.path_down) {
                                 file1.has_conflict = true;
                                 file2.has_conflict = true;
@@ -188,6 +209,10 @@ namespace FindFileConflicts.Services {
                         }
                     }
 
+                    if (checked_timer != 0) {
+                        Source.remove (checked_timer);
+                        checked_timer = 0;
+                    }
                     check_for_conflicts_finished ();
                     return null;
                 });

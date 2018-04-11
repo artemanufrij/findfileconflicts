@@ -12,7 +12,7 @@
         <ul>
             <li>Similar file names like 'my document.txt' and 'My Document.txt'</li>
             <li>Illegal chars like ':'</li>
-            <li>Too long file names (>360 chars)</li>
+            <li>Too long file names (>260 chars)</li>
         </ul>
     </description>
     <categories>
