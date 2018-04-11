@@ -69,7 +69,7 @@ namespace FindFileConflicts {
                 });
             lb_manager.files_checked.connect (
                 (count, total) => {
-                    message.description = _("Checked %u files from %u").printf (count, total);
+                    message.description = _("Checked %u files of %u").printf (count, total);
                 });
 
             lb_manager.scan_finished.connect (

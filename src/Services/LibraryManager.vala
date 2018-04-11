@@ -52,7 +52,8 @@ namespace FindFileConflicts.Services {
         uint finish_timer = 0;
         uint found_timer = 0;
         uint checked_timer = 0;
-        uint i;
+        uint l = 0;
+        int i = -1;
         GLib.GenericArray<Objects.LocalFile> files;
 
         construct {
@@ -76,7 +77,7 @@ namespace FindFileConflicts.Services {
         }
 
         public async void scan_folder (string path) {
-            files = new  GLib.GenericArray<Objects.LocalFile> ();
+            files = new GLib.GenericArray<Objects.LocalFile> ();
             root = path;
             lf_manager.scan (path);
             call_finish_timer ();
@@ -93,7 +94,7 @@ namespace FindFileConflicts.Services {
             found_timer = Timeout.add (
                 250,
                 () => {
-                    var l = files.length ;
+                    l = files.length;
                     Idle.add (
                         () => {
                             files_found (l);
@@ -104,7 +105,7 @@ namespace FindFileConflicts.Services {
         }
 
         private void start_checked_pulling () {
-            var l = files.length ;
+            l = files.length;
             checked_timer = Timeout.add (
                 250,
                 () => {
@@ -147,9 +148,11 @@ namespace FindFileConflicts.Services {
 
                     start_checked_pulling ();
 
-                    var l = files.length;
+                    l = files.length;
                     i = -1;
-                    while (i < l) {
+                    stdout.printf ("%d of %u\n", i, l);
+                    while (i < (int)l - 1) {
+                        stdout.printf ("%d of %u\n", i, l);
                         i++;
                         var file1 = files.data [i];
                         if (file1.has_conflict) {
@@ -188,8 +191,10 @@ namespace FindFileConflicts.Services {
                         }
 
                         // CHECK FOR SIMILAR FILE NAME
-                        if (settings.use_rule_similar && l > i + 1) {
-                            var file2 = files.data [i + 1];
+                        uint next = i + 1;
+                        stdout.printf ("Next: %u\n", next);
+                        if (settings.use_rule_similar && l > next) {
+                            var file2 = files.data [next];
                             if (file1.path_down == file2.path_down) {
                                 file1.has_conflict = true;
                                 file2.has_conflict = true;
