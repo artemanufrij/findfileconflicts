@@ -111,7 +111,9 @@ namespace FindFileConflicts.Services {
                 () => {
                     Idle.add (
                         () => {
-                            files_checked (i, l);
+                            if (i > 0) {
+                                files_checked (i, l);
+                            }
                             return false;
                         });
                     return true;
@@ -141,16 +143,15 @@ namespace FindFileConflicts.Services {
             new Thread<void*> (
                 "check_for_conflicts",
                 () => {
+                    start_checked_pulling ();
                     files.sort (
                         (a, b) => {
                             return a.path_down.collate (b.path_down);
                         });
 
-                    start_checked_pulling ();
-
                     l = files.length;
                     i = -1;
-                    while (i < (int)l - 1) {
+                    while (i < l - 1) {
                         i++;
                         var file1 = files.data [i];
                         if (file1.has_conflict) {
