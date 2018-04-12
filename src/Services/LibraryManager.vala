@@ -151,7 +151,7 @@ namespace FindFileConflicts.Services {
 
                     l = files.length;
                     i = -1;
-                    while (i < l - 1) {
+                    while (i < (int)l - 1) {
                         i++;
                         var file1 = files.data [i];
                         if (file1.has_conflict) {
