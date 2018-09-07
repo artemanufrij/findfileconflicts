@@ -8,132 +8,133 @@ msgstr ""
 "Project-Id-Version: com.github.artemanufrij.findfileconflicts\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-04 18:32+0200\n"
-"PO-Revision-Date: 2018-04-04 18:32+0200\n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2018-09-03 11:52+0200\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: none\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #: src/MainWindow.vala:59
 msgid "Scaning for conflict files…"
-msgstr ""
+msgstr "Bezig met zoeken naar bestandsconflicten…"
 
 #: src/MainWindow.vala:88
 msgid "No conflict files found"
-msgstr ""
+msgstr "Geen bestandsconflicten gevonden"
 
 #: src/MainWindow.vala:127
 msgid "Open Folder"
-msgstr ""
+msgstr "Map openen"
 
 #: src/MainWindow.vala:142
 msgid "Preferences"
-msgstr ""
+msgstr "Voorkeuren"
 
 #: src/MainWindow.vala:156
 msgid "Rescan"
-msgstr ""
+msgstr "Opnieuw doorzoeken"
 
 #: src/MainWindow.vala:174
 msgid "All conflicts solved"
-msgstr ""
+msgstr "Alle conflicten zijn opgelost"
 
 #: src/MainWindow.vala:181
 #, c-format
 msgid "%u conflicts found"
-msgstr ""
+msgstr "%u conflicten gevonden"
 
 #: src/Dialogs/Preferences.vala:54
 msgid "General"
-msgstr ""
+msgstr "Algemeen"
 
 #: src/Dialogs/Preferences.vala:55
 msgid "Rules"
-msgstr ""
+msgstr "Regels"
 
 #: src/Dialogs/Preferences.vala:60
 msgid "Close"
-msgstr ""
+msgstr "Sluiten"
 
 #: src/Dialogs/Preferences.vala:82
 msgid "Use Dark Theme"
-msgstr ""
+msgstr "Donker thema gebruiken"
 
 #: src/Dialogs/Preferences.vala:129
 msgid "Similar File Name"
-msgstr ""
+msgstr "Vergelijkbare bestandsnaam"
 
 #: src/Dialogs/Preferences.vala:131
 msgid "Too Long File Name"
-msgstr ""
+msgstr "Bestandsnaam is te lang"
 
 #: src/Dialogs/Preferences.vala:133
 msgid "Illegal Chars"
-msgstr ""
+msgstr "Niet-toegestane tekens"
 
 #: src/Dialogs/Preferences.vala:135
 msgid "Double Dots"
-msgstr ""
+msgstr "Twee punten"
 
 #: src/Dialogs/Preferences.vala:137
 msgid "Check for Duplicates"
-msgstr ""
+msgstr "Controleren op duplicaten"
 
 #: src/Widgets/LocalFile.vala:44
 msgid "Similar Files"
-msgstr ""
+msgstr "Vergelijkbare bestanden"
 
 #: src/Widgets/LocalFile.vala:46
 msgid "Move into Trash"
-msgstr ""
+msgstr "Verplaatsen naar prullenbak"
 
 #: src/Widgets/LocalFile.vala:60
 msgid "Filename contains illegal chars"
-msgstr ""
+msgstr "Bestandsnaam bevat niet-toegestane tekens"
 
 #: src/Widgets/LocalFile.vala:63
 msgid "Filename is too long"
-msgstr ""
+msgstr "Bestandsnaam is te lang"
 
 #: src/Widgets/LocalFile.vala:66
 msgid "Filename contains double dots '..'"
-msgstr ""
+msgstr "Bestandsnaam bevat twee punten '..'"
 
 #: src/Widgets/LocalFile.vala:72
 msgid "Open Location"
-msgstr ""
+msgstr "Locatie openen"
 
 #: src/Widgets/Views/Welcome.vala:37
 msgid "Find File Conflicts"
-msgstr ""
+msgstr "Bestandsconflicten zoeken"
 
 #: src/Widgets/Views/Welcome.vala:37
 msgid "Check file names."
-msgstr ""
+msgstr "Bestandsnamen controleren."
 
 #: src/Widgets/Views/Welcome.vala:38
 msgid "Open"
-msgstr ""
+msgstr "Openen"
 
 #: src/Widgets/Views/Welcome.vala:38
 msgid "Choose a folder for scanning its content for coflicts."
-msgstr ""
+msgstr "Kies een te doorzoeken map."
 
 #: src/Utils/Utils.vala:41
 msgid "Select a folder."
-msgstr ""
+msgstr "Kies een map."
 
 #: src/Utils/Utils.vala:42
 msgid "_Cancel"
-msgstr ""
+msgstr "_Annuleren"
 
 #: src/Utils/Utils.vala:43
 msgid "_Open"
-msgstr ""
+msgstr "_Openen"
 
 #: src/Utils/Utils.vala:46
 msgid "Folder"
-msgstr ""
+msgstr "Map"
