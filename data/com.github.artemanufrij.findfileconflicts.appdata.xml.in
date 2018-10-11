@@ -5,7 +5,7 @@
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0+</project_license>
     <name>File Conflicts Finder</name>
-    <summary>Solve possible file conflicts.</summary>
+    <summary>Helps to detect and solve possible file conflicts on non Unix based operating systems</summary>
     <description>
         <p>Helps to find file names which could have conflicts on Windows.</p>
         <p>Checks:</p>
