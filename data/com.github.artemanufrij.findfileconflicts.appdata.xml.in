@@ -41,6 +41,18 @@
         </screenshot>
     </screenshots>
     <releases>
+        <release version="1.1.0" date="2018-10-24">
+            <description>
+                <p>New:</p>
+                <ul>
+                    <li>Sort result table by filename or modified date</li>
+                </ul>
+                <p>Fixed:</p>
+                <ul>
+                    <li>Restore correct window size</li>
+                </ul>
+            </description>
+        </release>
         <release version="1.1.0" date="2018-07-24">
             <description>
                 Prepare for JUNO
