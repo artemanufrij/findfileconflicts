@@ -24,44 +24,8 @@
  *
  * Authored by: Artem Anufrij <artem.anufrij@live.de>
  */
-
-namespace FindFileConflicts.Widgets {
-    public class FilesConflict : Gtk.ListBoxRow, Interfaces.IConflict {
-        public signal void solved ();
-
-        public Objects.LocalFile file1 { get; private set; }
-        public Objects.LocalFile file2 { get; private set; }
-
-        public FilesConflict (Objects.LocalFile file1, Objects.LocalFile file2) {
-            this.file1 = file1;
-            this.file2 = file2;
-
-            build_ui ();
-        }
-
-        private void build_ui () {
-            var content = new Gtk.Grid ();
-            content.column_homogeneous = true;
-
-            var file1_widget = new Widgets.LocalFile (file1);
-            file1_widget.removed.connect (
-                () => {
-                    solved ();
-                });
-            file1_widget.expand = true;
-
-            var file2_widget = new Widgets.LocalFile (file2, false);
-            file2_widget.removed.connect (
-                () => {
-                    solved ();
-                });
-            file2_widget.expand = true;
-
-            content.attach (file1_widget, 0, 0);
-            content.attach (file2_widget, 1, 0);
-
-            this.add (content);
-            this.show_all ();
-        }
+namespace FindFileConflicts.Interfaces {
+    public interface IConflict : Object {
+        public abstract Objects.LocalFile file1 { get; set; }
     }
 }

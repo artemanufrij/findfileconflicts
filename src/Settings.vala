@@ -45,6 +45,8 @@ namespace FindFileConflicts {
         public bool use_rule_chars { get; set; }
         public bool use_rule_dots { get; set; }
         public bool use_rule_duplicates { get; set; }
+        public string sort_column { get; set; }
+        public bool sort_asc { get; set; }
 
         private Settings () {
             base ("com.github.artemanufrij.findfileconflicts");

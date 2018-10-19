@@ -55,5 +55,15 @@
 			<summary>Rule duplicates.</summary>
 			<description>Rule duplicates.</description>
 		</key>
+		<key name="sort-column" type="s">
+			<default>"name"</default>
+			<summary>Sort Column.</summary>
+			<description>Sort Column.</description>
+		</key>
+		<key name="sort-asc" type="b">
+			<default>true</default>
+			<summary>Sort Direction.</summary>
+			<description>Sort Direction.</description>
+		</key>
 	</schema>
 </schemalist>

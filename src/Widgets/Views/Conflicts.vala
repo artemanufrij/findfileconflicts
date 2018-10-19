@@ -28,6 +28,7 @@
 namespace FindFileConflicts.Widgets.Views {
     public class Conflicts : Gtk.Grid {
         Services.LibraryManager lb_manager;
+        Settings settings;
 
         public signal void solved ();
         public signal void items_changed (uint count);
@@ -35,6 +36,8 @@ namespace FindFileConflicts.Widgets.Views {
         Gtk.ListBox conflicts;
 
         construct {
+            settings = Settings.get_default ();
+
             lb_manager = Services.LibraryManager.instance;
             lb_manager.conflict_found.connect (
                 (file1, file2) => {
@@ -60,6 +63,8 @@ namespace FindFileConflicts.Widgets.Views {
 
             this.add (scroll);
             this.show_all ();
+
+            set_sort ();
         }
 
         private void add_conflict (Objects.LocalFile file1, Objects.LocalFile ? file2) {
@@ -86,6 +91,24 @@ namespace FindFileConflicts.Widgets.Views {
             foreach (var item in conflicts.get_children ()) {
                 item.destroy ();
             }
+        }
+
+        private void set_sort () {
+            conflicts.set_sort_func (sort_func);
+        }
+
+        private int sort_func (Gtk.ListBoxRow child1, Gtk.ListBoxRow child2) {
+            var file1 = (child1 as Interfaces.IConflict).file1;
+            var file2 = (child2 as Interfaces.IConflict).file1;
+
+            switch (settings.sort_column) {
+                case "name":
+                    return file1.path_down.collate (file2.path_down) * (settings.sort_asc == true ? 1: -1);
+                case "date":
+                    return (int)(file1.modified - file2.modified) * (settings.sort_asc == true ? 1: -1);
+            }
+
+            return 0;
         }
     }
 }

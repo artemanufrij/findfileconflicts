@@ -30,6 +30,7 @@ executable(
     'src/Application.vala',
     'src/MainWindow.vala',
     'src/Settings.vala',
+    'src/Interfaces/IConflict.vala',
     'src/Objects/LocalFile.vala',
     'src/Services/LocalFilesManager.vala',
     'src/Services/LibraryManager.vala',

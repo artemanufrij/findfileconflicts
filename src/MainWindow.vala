@@ -109,13 +109,6 @@ namespace FindFileConflicts {
         public MainWindow () {
             load_settings ();
             build_ui ();
-            this.configure_event.connect (
-                (event) => {
-                    settings.window_width = event.width;
-                    settings.window_height = event.height;
-                    return false;
-                });
-
             this.delete_event.connect (
                 () => {
                     save_settings ();
@@ -228,6 +221,11 @@ namespace FindFileConflicts {
             this.get_position (out x, out y);
             settings.window_x = x;
             settings.window_y = y;
+
+            int width, height;
+            this.get_size (out width, out height);
+            settings.window_height = height;
+            settings.window_width = width;
         }
     }
 }

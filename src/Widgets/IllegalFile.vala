@@ -26,17 +26,17 @@
  */
 
 namespace FindFileConflicts.Widgets {
-    public class IllegalFile : Gtk.ListBoxRow {
-        public Objects.LocalFile file { get; private set; }
+    public class IllegalFile : Gtk.ListBoxRow, Interfaces.IConflict {
+        public Objects.LocalFile file1 { get; private set; }
 
         public IllegalFile (Objects.LocalFile file) {
-            this.file = file;
+            this.file1 = file;
             build_ui ();
         }
 
         private void build_ui () {
             var content = new Gtk.Grid ();
-            var file_widget = new Widgets.LocalFile (file, false);
+            var file_widget = new Widgets.LocalFile (this.file1, false);
             file_widget.expand = true;
             content.attach (file_widget, 0, 0);
 

@@ -109,7 +109,7 @@ namespace FindFileConflicts.Widgets {
                             warning (err.message);
                 image = new Gtk.Image.from_icon_name ("default", Gtk.IconSize.BUTTON);
             }
-            image.margin_right = 6;
+            image.margin_end = 6;
 
             var label = new Gtk.Label (file.title);
             label.xalign = 0;
