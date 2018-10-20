@@ -29,8 +29,8 @@ namespace FindFileConflicts.Widgets {
     public class FilesConflict : Gtk.ListBoxRow, Interfaces.IConflict {
         public signal void solved ();
 
-        public Objects.LocalFile file1 { get; private set; }
-        public Objects.LocalFile file2 { get; private set; }
+        public Objects.LocalFile file1 { get; set; }
+        public Objects.LocalFile file2 { get; set; }
 
         public FilesConflict (Objects.LocalFile file1, Objects.LocalFile file2) {
             this.file1 = file1;

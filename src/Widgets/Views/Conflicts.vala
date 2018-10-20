@@ -35,8 +35,16 @@ namespace FindFileConflicts.Widgets.Views {
 
         Gtk.ListBox conflicts;
 
+        uint timer_sort = 0;
+
         construct {
             settings = Settings.get_default ();
+            settings.notify["sort-column"].connect (() => {
+                    do_sort ();
+                });
+            settings.notify["sort-asc"].connect (() => {
+                    do_sort ();
+                });
 
             lb_manager = Services.LibraryManager.instance;
             lb_manager.conflict_found.connect (
@@ -63,8 +71,6 @@ namespace FindFileConflicts.Widgets.Views {
 
             this.add (scroll);
             this.show_all ();
-
-            set_sort ();
         }
 
         private void add_conflict (Objects.LocalFile file1, Objects.LocalFile ? file2) {
@@ -85,6 +91,7 @@ namespace FindFileConflicts.Widgets.Views {
                 conflicts.add (conflict);
             }
             items_changed (conflicts.get_children ().length ());
+            do_sort ();
         }
 
         private void reset () {
@@ -93,8 +100,21 @@ namespace FindFileConflicts.Widgets.Views {
             }
         }
 
-        private void set_sort () {
-            conflicts.set_sort_func (sort_func);
+        private void do_sort () {
+            lock (timer_sort) {
+                if (timer_sort != 0) {
+                    Source.remove (timer_sort);
+                    timer_sort = 0;
+                }
+
+                timer_sort = Timeout.add (100, () => {
+                    conflicts.set_sort_func (sort_func);
+                    conflicts.set_sort_func (null);
+                    Source.remove (timer_sort);
+                    timer_sort = 0;
+                    return false;
+                });
+            }
         }
 
         private int sort_func (Gtk.ListBoxRow child1, Gtk.ListBoxRow child2) {

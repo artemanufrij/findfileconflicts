@@ -11,6 +11,28 @@ foreach i : icon_sizes
   )
 endforeach
 
+install_data(
+    join_paths('icons', 'symbolic', 'text-sort-ascending-symbolic.svg'),
+    install_dir: join_paths(get_option('datadir'), 'icons/hicolor/symbolic/apps')
+)
+
+install_data(
+    join_paths('icons', 'symbolic', 'text-sort-descending-symbolic.svg'),
+    install_dir: join_paths(get_option('datadir'), 'icons/hicolor/symbolic/apps')
+)
+
+install_data(
+    join_paths('icons', 'symbolic', 'time-sort-ascending-symbolic.svg'),
+    install_dir: join_paths(get_option('datadir'), 'icons/hicolor/symbolic/apps')
+)
+
+install_data(
+    join_paths('icons', 'symbolic', 'time-sort-descending-symbolic.svg'),
+    install_dir: join_paths(get_option('datadir'), 'icons/hicolor/symbolic/apps')
+)
+
+
+
 i18n.merge_file(
   input: meson.project_name() + '.desktop.in',
   output: meson.project_name() + '.desktop',

@@ -27,7 +27,7 @@
 
 namespace FindFileConflicts.Widgets {
     public class IllegalFile : Gtk.ListBoxRow, Interfaces.IConflict {
-        public Objects.LocalFile file1 { get; private set; }
+        public Objects.LocalFile file1 { get; set; }
 
         public IllegalFile (Objects.LocalFile file) {
             this.file1 = file;

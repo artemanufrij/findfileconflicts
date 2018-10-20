@@ -36,7 +36,10 @@ namespace FindFileConflicts {
         Gtk.MenuButton app_menu;
         Gtk.Button open_dir_btn;
         Gtk.Button refresh_btn;
+        Gtk.Image sort_name;
+        Gtk.Image sort_date;
         Granite.Widgets.AlertView message;
+        Granite.Widgets.ModeButton sort_mode;
 
         string ? dir = null;
 
@@ -51,6 +54,12 @@ namespace FindFileConflicts {
                         app_menu.set_image (new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR));
                     }
                 });
+            settings.notify["sort-column"].connect (() => {
+                    update_sort_icons ();
+                });
+            settings.notify["sort-asc"].connect (() => {
+                    update_sort_icons ();
+                });
 
             lb_manager = Services.LibraryManager.instance;
             lb_manager.scan_started.connect (
@@ -62,6 +71,7 @@ namespace FindFileConflicts {
                     spinner.active = true;
                     open_dir_btn.sensitive = false;
                     refresh_btn.hide ();
+                    sort_mode.hide ();
                 });
             lb_manager.files_found.connect (
                 (count) => {
@@ -96,12 +106,13 @@ namespace FindFileConflicts {
                                 message.title = _ ("No conflict files found");
                                 message.icon_name = "dialog-information";
                             }
-
+                            update_sort_icons ();
                             return false;
                         });
                 });
             lb_manager.conflict_found.connect (
                 () => {
+                    sort_mode.show ();
                     content.visible_child_name = "conflicts";
                 });
         }
@@ -165,6 +176,44 @@ namespace FindFileConflicts {
             spinner = new Gtk.Spinner ();
             headerbar.pack_end (spinner);
 
+            // SORT BUTTONS
+            sort_mode = new Granite.Widgets.ModeButton ();
+            sort_mode.valign = Gtk.Align.CENTER;
+
+            sort_name = new Gtk.Image.from_icon_name ("text-sort-ascending-symbolic", Gtk.IconSize.BUTTON);
+            sort_name.tooltip_text = _ ("Sort by Filename");
+            sort_mode.append (sort_name);
+
+            sort_date = new Gtk.Image.from_icon_name ("time-sort-ascending-symbolic", Gtk.IconSize.BUTTON);
+            sort_date.tooltip_text = _ ("Sort by Date");
+            sort_mode.append (sort_date);
+
+            sort_mode.mode_changed.connect (
+                () => {
+                    switch (sort_mode.selected) {
+                        case 0 :
+                            if (settings.sort_column == "name") {
+                                settings.sort_asc = !settings.sort_asc;
+                            } else {
+                                settings.sort_column = "name";
+                                settings.sort_asc = true;
+                            }
+                            break;
+                        case 1 :
+                            if (settings.sort_column == "date") {
+                                settings.sort_asc = !settings.sort_asc;
+                            } else {
+                                settings.sort_column = "date";
+                                settings.sort_asc = true;
+                            }
+                            break;
+                    }
+                    sort_mode.selected = -1;
+                });
+
+            headerbar.pack_start (sort_mode);
+
+            // WELCOME
             var welcome = new Widgets.Views.Welcome ();
             welcome.open_dir_clicked.connect (open_dir_action);
 
@@ -175,6 +224,7 @@ namespace FindFileConflicts {
                     message.title = _ ("All conflicts solved");
                     message.icon_name = "dialog-information";
                     headerbar.title = "Find File Conflicts";
+                    sort_mode.hide ();
                 });
 
             conflicts.items_changed.connect (
@@ -191,11 +241,33 @@ namespace FindFileConflicts {
             this.add (content);
             this.show_all ();
             refresh_btn.hide ();
+            sort_mode.hide ();
+        }
+
+        private void update_sort_icons () {
+            switch (settings.sort_column) {
+                case "name":
+                    sort_date.icon_name = "preferences-system-time-symbolic";
+                    if (settings.sort_asc) {
+                        sort_name.icon_name = "text-sort-ascending-symbolic";
+                    } else {
+                        sort_name.icon_name = "text-sort-descending-symbolic";
+                    }
+                    break;
+                case "date":
+                    sort_name.icon_name = "format-text-larger-symbolic";
+                    if (settings.sort_asc) {
+                        sort_date.icon_name = "time-sort-ascending-symbolic";
+                    } else {
+                        sort_date.icon_name = "time-sort-descending-symbolic";
+                    }
+                    break;
+            }
         }
 
         private void open_dir_action () {
             dir = Utils.choose_folder ();
-                    rescan ();
+            rescan ();
         }
 
         public void rescan () {
