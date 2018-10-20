@@ -51,6 +51,10 @@
                 <ul>
                     <li>Restore correct window size</li>
                 </ul>
+                <p>Translation:</p>
+                <ul>
+                    <li>Dutch (by Heimen Stoffels)</li>
+                </ul>
             </description>
         </release>
         <release version="1.1.0" date="2018-07-24">
