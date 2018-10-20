@@ -29,6 +29,8 @@ namespace FindFileConflicts.Widgets {
     public class LocalFile : Gtk.EventBox {
         public signal void removed ();
 
+        Gtk.Box content;
+        Gtk.Grid controls;
         Objects.LocalFile file { get; private set; }
 
         public LocalFile (Objects.LocalFile file, bool show_separator = true) {
@@ -37,66 +39,34 @@ namespace FindFileConflicts.Widgets {
         }
 
         private void build_ui (bool show_separator) {
-            var content = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+            content = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
-            Gtk.Button command_button;
             if (file.conflict_type == Objects.ConflictType.SIMILAR) {
                 this.tooltip_text = _ ("Similar Files");
-                command_button = new Gtk.Button.from_icon_name ("user-trash-symbolic", Gtk.IconSize.BUTTON);
-                command_button.tooltip_text = _ ("Move into Trash");
-                command_button.clicked.connect (
-                    () => {
-                        try {
-                            if (file.file.trash ()) {
-                                removed ();
-                            }
-                        } catch (Error err) {
-                            warning (err.message);
-                        }
-                    });
+
             } else {
                 switch (file.conflict_type) {
-                case Objects.ConflictType.CHARS :
-                    this.tooltip_text = _ ("Filename contains illegal chars");
-                    break;
-                case Objects.ConflictType.LENGTH :
-                    this.tooltip_text = _ ("Filename is too long");
-                    break;
-                case Objects.ConflictType.DOTS :
-                    this.tooltip_text = _ ("Filename contains double dots '..'");
-                    break;
+                    case Objects.ConflictType.CHARS :
+                        this.tooltip_text = _ ("Filename contains illegal chars");
+                        break;
+                    case Objects.ConflictType.LENGTH :
+                        this.tooltip_text = _ ("Filename is too long");
+                        break;
+                    case Objects.ConflictType.DOTS :
+                        this.tooltip_text = _ ("Filename contains double dots '..'");
+                        break;
                 }
-
-                command_button = new Gtk.Button.from_icon_name ("document-open-symbolic", Gtk.IconSize.BUTTON);
-                command_button.tooltip_text = _ ("Open Location");
-                command_button.clicked.connect (
-                    () => {
-                        try {
-                            Process.spawn_command_line_async ("xdg-open '%s'".printf (file.file.get_parent ().get_path ()));
-                        } catch (Error err) {
-                            warning (err.message);
-                        }
-                    });
             }
-
-            command_button.get_style_context ().remove_class ("button");
-            command_button.opacity = 0;
-            command_button.margin = 6;
-            command_button.enter_notify_event.connect (
-                () => {
-                    command_button.opacity = 1;
-                    return false;
-                });
 
             this.enter_notify_event.connect (
                 () => {
-                    command_button.opacity = 1;
+                    controls.opacity = 0.75;
                     return false;
                 });
 
             this.leave_notify_event.connect (
                 () => {
-                    command_button.opacity = 0;
+                    controls.opacity = 0;
                     return false;
                 });
 
@@ -104,10 +74,10 @@ namespace FindFileConflicts.Widgets {
             try {
                 FileInfo info = file.file.query_info ("standard::icon", 0);
                 Icon icon = info.get_icon ();
-                image = new Gtk.Image.from_gicon (icon, Gtk.IconSize.BUTTON);
+                image = new Gtk.Image.from_gicon (icon, Gtk.IconSize.LARGE_TOOLBAR);
             } catch (Error err) {
-                            warning (err.message);
-                image = new Gtk.Image.from_icon_name ("default", Gtk.IconSize.BUTTON);
+                warning (err.message);
+                image = new Gtk.Image.from_icon_name ("default", Gtk.IconSize.LARGE_TOOLBAR);
             }
             image.margin_end = 6;
 
@@ -117,7 +87,8 @@ namespace FindFileConflicts.Widgets {
             var date = new Gtk.Label (file.date);
             date.margin = 6;
 
-            content.pack_start (command_button, false, false);
+            build_controls_ui ();
+            //content.pack_start (command_button, false, false);
             content.pack_start (image, false, false);
             content.pack_start (label, false, false);
             if (show_separator) {
@@ -126,6 +97,57 @@ namespace FindFileConflicts.Widgets {
             content.pack_end (date, false, false);
 
             this.add (content);
+        }
+
+        private void build_controls_ui () {
+            controls = new Gtk.Grid ();
+            controls.margin = 4;
+            controls.opacity = 0;
+            controls.row_spacing = 2;
+
+            // OPEN LOCATION
+            var command_open_location = new Gtk.EventBox ();
+            command_open_location.enter_notify_event.connect (() => {
+                controls.opacity = 0.75;
+                return false;
+            });
+            command_open_location.button_release_event.connect (() => {
+                try {
+                    Process.spawn_command_line_async ("xdg-open '%s'".printf (file.file.get_parent ().get_path ()));
+                } catch (Error err) {
+                    warning (err.message);
+                }
+                return false;
+            });
+            var icon_open_location = new Gtk.Image.from_icon_name ("document-open-symbolic", Gtk.IconSize.BUTTON);
+            icon_open_location.tooltip_text = _ ("Open Location");
+            command_open_location.add (icon_open_location);
+
+            // MOVE INTO TRASH
+            var command_remove_file = new Gtk.EventBox ();
+            command_remove_file.enter_notify_event.connect (() => {
+                controls.opacity = 0.75;
+                return false;
+            });
+            command_remove_file.button_release_event.connect (() => {
+                try {
+                    if (file.file.trash ()) {
+                        removed ();
+                    }
+                } catch (Error err) {
+                    warning (err.message);
+                }
+                return false;
+            });
+
+            var icon_remove_file = new Gtk.Image.from_icon_name ("user-trash-symbolic", Gtk.IconSize.BUTTON);
+            icon_remove_file.tooltip_text = _ ("Move into Trash");
+            command_remove_file.add (icon_remove_file);
+
+            controls.attach (command_open_location, 0, 0);
+            controls.attach (command_remove_file, 0, 1);
+
+            content.pack_start (controls, false, false);
         }
     }
 }
