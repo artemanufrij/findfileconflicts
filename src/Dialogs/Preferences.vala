@@ -34,28 +34,13 @@ namespace FindFileConflicts.Dialogs {
         }
 
         public Preferences (Gtk.Window parent) {
-            Object (transient_for: parent, deletable: false, resizable: false, use_header_bar: 1);
+            Object (transient_for: parent, deletable: false, resizable: false);
             build_ui ();
         }
 
         private void build_ui () {
-            var switcher = new Gtk.StackSwitcher ();
-            switcher.margin_top = 12;
-
-            var stack = new Gtk.Stack ();
-            switcher.stack = stack;
-
-            var header = this.get_header_bar () as Gtk.HeaderBar;
-            header.set_custom_title (switcher);
-
-            var general_grid = build_general_grid ();
-            var rules_grid = build_rules_grid ();
-
-            stack.add_titled (general_grid, "general", _ ("General"));
-            stack.add_titled (rules_grid, "rules", _ ("Rules"));
-
             var content = this.get_content_area () as Gtk.Box;
-            content.pack_start (stack, false, false, 0);
+            content.add (build_rules_grid ());
 
             var close_button = new Gtk.Button.with_label (_ ("Close"));
             close_button.clicked.connect (() => { this.destroy (); });
@@ -66,25 +51,6 @@ namespace FindFileConflicts.Dialogs {
             this.show_all ();
         }
 
-        private Gtk.Grid build_general_grid () {
-            var grid = new Gtk.Grid ();
-            grid.column_spacing = 12;
-            grid.row_spacing = 12;
-            grid.margin = 12;
-
-            var use_dark_theme = new Gtk.Switch ();
-            use_dark_theme.active = settings.use_dark_theme;
-            use_dark_theme.notify["active"].connect (
-                () => {
-                    settings.use_dark_theme = use_dark_theme.active;
-                });
-
-            grid.attach (label_generator (_ ("Use Dark Theme")), 0, 0);
-            grid.attach (use_dark_theme, 1, 0);
-
-            return grid;
-        }
-
         private Gtk.Grid build_rules_grid () {
             var grid = new Gtk.Grid ();
             grid.column_spacing = 12;
@@ -93,31 +59,27 @@ namespace FindFileConflicts.Dialogs {
 
             var use_rule_similar = new Gtk.Switch ();
             use_rule_similar.active = settings.use_rule_similar;
-            use_rule_similar.notify["active"].connect (
-                () => {
-                    settings.use_rule_similar = use_rule_similar.active;
-                });
+            use_rule_similar.notify["active"].connect (() => {
+                settings.use_rule_similar = use_rule_similar.active;
+            });
 
             var use_rule_length = new Gtk.Switch ();
             use_rule_length.active = settings.use_rule_length;
-            use_rule_length.notify["active"].connect (
-                () => {
-                    settings.use_rule_length = use_rule_length.active;
-                });
+            use_rule_length.notify["active"].connect (() => {
+                settings.use_rule_length = use_rule_length.active;
+            });
 
             var use_rule_chars = new Gtk.Switch ();
             use_rule_chars.active = settings.use_rule_chars;
-            use_rule_chars.notify["active"].connect (
-                () => {
-                    settings.use_rule_chars = use_rule_chars.active;
-                });
+            use_rule_chars.notify["active"].connect (() => {
+                settings.use_rule_chars = use_rule_chars.active;
+            });
 
             var use_rule_dots = new Gtk.Switch ();
             use_rule_dots.active = settings.use_rule_dots;
-            use_rule_dots.notify["active"].connect (
-                () => {
-                    settings.use_rule_dots = use_rule_dots.active;
-                });
+            use_rule_dots.notify["active"].connect (() => {
+                settings.use_rule_dots = use_rule_dots.active;
+            });
 
             /*var use_rule_duplicates = new Gtk.Switch ();
             use_rule_duplicates.active = settings.use_rule_duplicates;
@@ -142,8 +104,8 @@ namespace FindFileConflicts.Dialogs {
 
         private Gtk.Label label_generator (string content) {
             return new Gtk.Label (content) {
-                       halign = Gtk.Align.START,
-                       hexpand = true
+                halign = Gtk.Align.START,
+                hexpand = true
             };
         }
     }

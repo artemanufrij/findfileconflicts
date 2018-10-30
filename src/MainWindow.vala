@@ -45,86 +45,71 @@ namespace FindFileConflicts {
 
         construct {
             settings = Settings.get_default ();
-            settings.notify["use-dark-theme"].connect (
-                () => {
-                    Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = settings.use_dark_theme;
-                    if (settings.use_dark_theme) {
-                        app_menu.set_image (new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-                    } else {
-                        app_menu.set_image (new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR));
-                    }
-                });
+            settings.notify["use-dark-theme"].connect (() => {
+                Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = settings.use_dark_theme;
+            });
             settings.notify["sort-column"].connect (() => {
-                    update_sort_icons ();
-                });
+                update_sort_icons ();
+            });
             settings.notify["sort-asc"].connect (() => {
-                    update_sort_icons ();
-                });
+                update_sort_icons ();
+            });
 
             lb_manager = Services.LibraryManager.instance;
-            lb_manager.scan_started.connect (
-                () => {
-                    headerbar.title = "Find File Conflicts";
-                    message.icon_name = "search";
-                    message.title = _ ("Scaning for conflict files…");
-                    content.visible_child_name = "message";
-                    spinner.active = true;
-                    open_dir_btn.sensitive = false;
-                    refresh_btn.hide ();
-                    sort_mode.hide ();
-                });
-            lb_manager.files_found.connect (
-                (count) => {
-                    message.description = _ ("%s (%u files found)").printf (dir, count);
-                });
-            lb_manager.files_checked.connect (
-                (count, total) => {
-                    message.description = _("Checked %u files of %u").printf (count, total);
-                });
 
-            lb_manager.scan_finished.connect (
-                () => {
+            lb_manager.scan_started.connect (() => {
+                headerbar.title = "Find File Conflicts";
+                message.icon_name = "search";
+                message.title = _ ("Scaning for conflict files…");
+                content.visible_child_name = "message";
+                spinner.active = true;
+                open_dir_btn.sensitive = false;
+                refresh_btn.hide ();
+                sort_mode.hide ();
+            });
+            lb_manager.files_found.connect ((count) => {
+                message.description = _ ("%s (%u files found)").printf (dir, count);
+            });
+            lb_manager.files_checked.connect ((count, total) => {
+                message.description = _("Checked %u files of %u").printf (count, total);
+            });
+            lb_manager.scan_finished.connect (() => {
+                spinner.active = false;
+                open_dir_btn.sensitive = true;
+                refresh_btn.show ();
+            });
+            lb_manager.check_for_conflicts_begin.connect (() => {
+                spinner.active = true;
+                open_dir_btn.sensitive = false;
+                refresh_btn.hide ();
+            });
+            lb_manager.check_for_conflicts_finished.connect (() => {
+                Idle.add (() => {
                     spinner.active = false;
                     open_dir_btn.sensitive = true;
                     refresh_btn.show ();
-                });
-            lb_manager.check_for_conflicts_begin.connect (
-                () => {
-                    spinner.active = true;
-                    open_dir_btn.sensitive = false;
-                    refresh_btn.hide ();
-                });
-            lb_manager.check_for_conflicts_finished.connect (
-                () => {
-                    Idle.add (
-                        () => {
-                            spinner.active = false;
-                            open_dir_btn.sensitive = true;
-                            refresh_btn.show ();
 
-                            if (content.visible_child_name == "message") {
-                                message.title = _ ("No conflict files found");
-                                message.icon_name = "dialog-information";
-                            }
-                            update_sort_icons ();
-                            return false;
-                        });
+                    if (content.visible_child_name == "message") {
+                        message.title = _ ("No conflict files found");
+                        message.icon_name = "dialog-information";
+                    }
+                    update_sort_icons ();
+                    return false;
                 });
-            lb_manager.conflict_found.connect (
-                () => {
-                    sort_mode.show ();
-                    content.visible_child_name = "conflicts";
-                });
+            });
+            lb_manager.conflict_found.connect (() => {
+                sort_mode.show ();
+                content.visible_child_name = "conflicts";
+            });
         }
 
         public MainWindow () {
             load_settings ();
             build_ui ();
-            this.delete_event.connect (
-                () => {
-                    save_settings ();
-                    return false;
-                });
+            this.delete_event.connect (() => {
+                save_settings ();
+                return false;
+            });
             Utils.set_custom_css_style (this.get_screen ());
         }
 
@@ -132,105 +117,38 @@ namespace FindFileConflicts {
             headerbar = new Gtk.HeaderBar ();
             headerbar.title = "Find File Conflicts";
             headerbar.show_close_button = true;
-            headerbar.get_style_context ().add_class ("default-decoration");
             this.set_titlebar (headerbar);
 
-            open_dir_btn = new Gtk.Button.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR);
-            open_dir_btn.tooltip_text = _ ("Open Folder");
-            open_dir_btn.clicked.connect (open_dir_action);
-            headerbar.pack_start (open_dir_btn);
+            header_build_open_button ();
 
-            // SETTINGS MENU
-            app_menu = new Gtk.MenuButton ();
-            app_menu.valign = Gtk.Align.CENTER;
-            if (settings.use_dark_theme) {
-                app_menu.set_image (new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-            } else {
-                app_menu.set_image (new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR));
-            }
+            header_build_sort_buttons ();
 
-            var settings_menu = new Gtk.Menu ();
+            header_build_refresh_button ();
 
-            var menu_item_preferences = new Gtk.MenuItem.with_label (_ ("Preferences"));
-            menu_item_preferences.activate.connect (
-                () => {
-                    var preferences = new Dialogs.Preferences (this);
-                    preferences.run ();
-                });
-            settings_menu.append (menu_item_preferences);
-            settings_menu.show_all ();
+            header_build_app_menu ();
 
-            app_menu.popup = settings_menu;
-            headerbar.pack_end (app_menu);
-
-            // REFRESH
-            refresh_btn = new Gtk.Button.from_icon_name ("view-refresh-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-            refresh_btn.tooltip_text = _ ("Rescan");
-            refresh_btn.clicked.connect (
-                () => {
-                    rescan ();
-                });
-            headerbar.pack_end (refresh_btn);
+            header_build_style_switcher ();
 
             // SPINNER
             spinner = new Gtk.Spinner ();
             headerbar.pack_end (spinner);
-
-            // SORT BUTTONS
-            sort_mode = new Granite.Widgets.ModeButton ();
-            sort_mode.valign = Gtk.Align.CENTER;
-
-            sort_name = new Gtk.Image.from_icon_name ("text-sort-ascending-symbolic", Gtk.IconSize.BUTTON);
-            sort_name.tooltip_text = _ ("Sort by Filename");
-            sort_mode.append (sort_name);
-
-            sort_date = new Gtk.Image.from_icon_name ("time-sort-ascending-symbolic", Gtk.IconSize.BUTTON);
-            sort_date.tooltip_text = _ ("Sort by Date");
-            sort_mode.append (sort_date);
-
-            sort_mode.mode_changed.connect (
-                () => {
-                    switch (sort_mode.selected) {
-                        case 0 :
-                            if (settings.sort_column == "name") {
-                                settings.sort_asc = !settings.sort_asc;
-                            } else {
-                                settings.sort_column = "name";
-                                settings.sort_asc = true;
-                            }
-                            break;
-                        case 1 :
-                            if (settings.sort_column == "date") {
-                                settings.sort_asc = !settings.sort_asc;
-                            } else {
-                                settings.sort_column = "date";
-                                settings.sort_asc = true;
-                            }
-                            break;
-                    }
-                    sort_mode.selected = -1;
-                });
-
-            headerbar.pack_start (sort_mode);
 
             // WELCOME
             var welcome = new Widgets.Views.Welcome ();
             welcome.open_dir_clicked.connect (open_dir_action);
 
             var conflicts = new Widgets.Views.Conflicts ();
-            conflicts.solved.connect (
-                () => {
-                    content.visible_child_name = "message";
-                    message.title = _ ("All conflicts solved");
-                    message.icon_name = "dialog-information";
-                    headerbar.title = "Find File Conflicts";
-                    sort_mode.hide ();
-                });
+            conflicts.solved.connect (() => {
+                content.visible_child_name = "message";
+                message.title = _ ("All conflicts solved");
+                message.icon_name = "dialog-information";
+                headerbar.title = "Find File Conflicts";
+                sort_mode.hide ();
+            });
 
-            conflicts.items_changed.connect (
-                (count) => {
-                    headerbar.title = _ ("%u conflicts found").printf (count);
-                });
+            conflicts.items_changed.connect ((count) => {
+                headerbar.title = _ ("%u conflicts found").printf (count);
+            });
 
             message = new Granite.Widgets.AlertView ("", "", "search");
 
@@ -242,6 +160,88 @@ namespace FindFileConflicts {
             this.show_all ();
             refresh_btn.hide ();
             sort_mode.hide ();
+        }
+
+        private void header_build_open_button () {
+            open_dir_btn = new Gtk.Button.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR);
+            open_dir_btn.tooltip_text = _ ("Open Folder");
+            open_dir_btn.clicked.connect (open_dir_action);
+            headerbar.pack_start (open_dir_btn);
+        }
+
+        private void header_build_refresh_button () {
+            refresh_btn = new Gtk.Button.from_icon_name ("view-refresh-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+            refresh_btn.tooltip_text = _ ("Rescan");
+            refresh_btn.clicked.connect (() => {
+                rescan ();
+            });
+            headerbar.pack_start (refresh_btn);
+        }
+
+        private void header_build_sort_buttons () {
+            sort_mode = new Granite.Widgets.ModeButton ();
+            sort_mode.valign = Gtk.Align.CENTER;
+
+            sort_name = new Gtk.Image.from_icon_name ("text-sort-ascending-symbolic", Gtk.IconSize.BUTTON);
+            sort_name.tooltip_text = _ ("Sort by Filename");
+            sort_mode.append (sort_name);
+
+            sort_date = new Gtk.Image.from_icon_name ("time-sort-ascending-symbolic", Gtk.IconSize.BUTTON);
+            sort_date.tooltip_text = _ ("Sort by Date");
+            sort_mode.append (sort_date);
+
+            sort_mode.mode_changed.connect (() => {
+                switch (sort_mode.selected) {
+                    case 0 :
+                        if (settings.sort_column == "name") {
+                            settings.sort_asc = !settings.sort_asc;
+                        } else {
+                            settings.sort_column = "name";
+                            settings.sort_asc = true;
+                        }
+                        break;
+                    case 1 :
+                        if (settings.sort_column == "date") {
+                            settings.sort_asc = !settings.sort_asc;
+                        } else {
+                            settings.sort_column = "date";
+                            settings.sort_asc = true;
+                        }
+                        break;
+                }
+                sort_mode.selected = -1;
+            });
+
+            headerbar.pack_start (sort_mode);
+        }
+
+        private void header_build_app_menu () {
+            app_menu = new Gtk.MenuButton ();
+            app_menu.valign = Gtk.Align.CENTER;
+            app_menu.set_image (new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
+
+            var settings_menu = new Gtk.Menu ();
+
+            var menu_item_preferences = new Gtk.MenuItem.with_label (_ ("Preferences"));
+            menu_item_preferences.activate.connect (() => {
+                    var preferences = new Dialogs.Preferences (this);
+                    preferences.run ();
+                });
+            settings_menu.append (menu_item_preferences);
+            settings_menu.show_all ();
+
+            app_menu.popup = settings_menu;
+            headerbar.pack_end (app_menu);
+        }
+
+        private void header_build_style_switcher () {
+            var mode_switch = new Granite.ModeSwitch.from_icon_name ("display-brightness-symbolic", "weather-clear-night-symbolic");
+            mode_switch.valign = Gtk.Align.CENTER;
+            mode_switch.active = settings.use_dark_theme;
+            mode_switch.notify["active"].connect (() => {
+                settings.use_dark_theme = mode_switch.active;
+            });
+            headerbar.pack_end (mode_switch);
         }
 
         private void update_sort_icons () {
