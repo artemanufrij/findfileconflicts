@@ -1,15 +1,15 @@
 # French translations for com.github.artemanufrij.findfileconflicts package.
 # Copyright (C) 2018 THE com.github.artemanufrij.findfileconflicts'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.artemanufrij.findfileconflicts package.
-# Automatically generated, 2018.
+# NathanBnm, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.artemanufrij.findfileconflicts\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-04 18:32+0200\n"
-"PO-Revision-Date: 2018-04-04 18:32+0200\n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2019-01-14 17:11+0100\n"
+"Last-Translator: NathanBnm\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -19,121 +19,121 @@ msgstr ""
 
 #: src/MainWindow.vala:59
 msgid "Scaning for conflict files…"
-msgstr ""
+msgstr "Recherche de fichiers de conflit…"
 
 #: src/MainWindow.vala:88
 msgid "No conflict files found"
-msgstr ""
+msgstr "Pas de fichiers en conflit trouvés"
 
 #: src/MainWindow.vala:127
 msgid "Open Folder"
-msgstr ""
+msgstr "Ouvrir le dossier"
 
 #: src/MainWindow.vala:142
 msgid "Preferences"
-msgstr ""
+msgstr "Préférences"
 
 #: src/MainWindow.vala:156
 msgid "Rescan"
-msgstr ""
+msgstr "Scanner à nouveau"
 
 #: src/MainWindow.vala:174
 msgid "All conflicts solved"
-msgstr ""
+msgstr "Tous les conflits ont été résolus"
 
 #: src/MainWindow.vala:181
 #, c-format
 msgid "%u conflicts found"
-msgstr ""
+msgstr "%u conflits trouvés"
 
 #: src/Dialogs/Preferences.vala:54
 msgid "General"
-msgstr ""
+msgstr "Général"
 
 #: src/Dialogs/Preferences.vala:55
 msgid "Rules"
-msgstr ""
+msgstr "Règles"
 
 #: src/Dialogs/Preferences.vala:60
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
 #: src/Dialogs/Preferences.vala:82
 msgid "Use Dark Theme"
-msgstr ""
+msgstr "Utiliser le thème sombre"
 
 #: src/Dialogs/Preferences.vala:129
 msgid "Similar File Name"
-msgstr ""
+msgstr "Fichiers de même nom"
 
 #: src/Dialogs/Preferences.vala:131
 msgid "Too Long File Name"
-msgstr ""
+msgstr "Nom de fichier trop long"
 
 #: src/Dialogs/Preferences.vala:133
 msgid "Illegal Chars"
-msgstr ""
+msgstr "Charactères non autorisés"
 
 #: src/Dialogs/Preferences.vala:135
 msgid "Double Dots"
-msgstr ""
+msgstr "Points en double"
 
 #: src/Dialogs/Preferences.vala:137
 msgid "Check for Duplicates"
-msgstr ""
+msgstr "Chercher les doublons"
 
 #: src/Widgets/LocalFile.vala:44
 msgid "Similar Files"
-msgstr ""
+msgstr "Fichiers similaires"
 
 #: src/Widgets/LocalFile.vala:46
 msgid "Move into Trash"
-msgstr ""
+msgstr "Déplacer vers la corbeille"
 
 #: src/Widgets/LocalFile.vala:60
 msgid "Filename contains illegal chars"
-msgstr ""
+msgstr "Le nom du fichier contient des charactères non autorisés"
 
 #: src/Widgets/LocalFile.vala:63
 msgid "Filename is too long"
-msgstr ""
+msgstr "Le nom du fichier est trop long"
 
 #: src/Widgets/LocalFile.vala:66
 msgid "Filename contains double dots '..'"
-msgstr ""
+msgstr "Le nom du fichiers contient des points en double '..'"
 
 #: src/Widgets/LocalFile.vala:72
 msgid "Open Location"
-msgstr ""
+msgstr "Ouvrir l'emplacement"
 
 #: src/Widgets/Views/Welcome.vala:37
 msgid "Find File Conflicts"
-msgstr ""
+msgstr "Trouver des conflits de fichiers"
 
 #: src/Widgets/Views/Welcome.vala:37
 msgid "Check file names."
-msgstr ""
+msgstr "Vérifier les noms de fichiers."
 
 #: src/Widgets/Views/Welcome.vala:38
 msgid "Open"
-msgstr ""
+msgstr "Ouvrir"
 
 #: src/Widgets/Views/Welcome.vala:38
 msgid "Choose a folder for scanning its content for coflicts."
-msgstr ""
+msgstr "Choisissez un dossier pour analyser son contenu à la recherche de coflicts."
 
 #: src/Utils/Utils.vala:41
 msgid "Select a folder."
-msgstr ""
+msgstr "Choissiez un dossier."
 
 #: src/Utils/Utils.vala:42
 msgid "_Cancel"
-msgstr ""
+msgstr "_Annuler"
 
 #: src/Utils/Utils.vala:43
 msgid "_Open"
-msgstr ""
+msgstr "_Ouvrir"
 
 #: src/Utils/Utils.vala:46
 msgid "Folder"
-msgstr ""
+msgstr "Dossier"
