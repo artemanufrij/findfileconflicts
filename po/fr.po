@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.artemanufrij.findfileconflicts\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-18 13:23+0200\n"
+"POT-Creation-Date: 2019-04-18 13:47+0200\n"
 "PO-Revision-Date: 2019-01-14 17:11+0100\n"
 "Last-Translator: NathanBnm\n"
 "Language-Team: none\n"
@@ -35,34 +35,46 @@ msgstr "%u fichiers sélectionnés sur %u"
 msgid "No conflict files found"
 msgstr "Pas de fichiers en conflit trouvés"
 
-#: src/MainWindow.vala:143
+#: src/MainWindow.vala:134
+msgid "Loading…"
+msgstr "Chargement…"
+
+#: src/MainWindow.vala:144
 msgid "All conflicts solved"
 msgstr "Tous les conflits ont été résolus"
 
-#: src/MainWindow.vala:150
+#: src/MainWindow.vala:151
 #, c-format
 msgid "%u conflicts found"
 msgstr "%u conflits trouvés"
 
-#: src/MainWindow.vala:167
+#: src/MainWindow.vala:168
 msgid "Open Folder"
 msgstr "Ouvrir le dossier"
 
-#: src/MainWindow.vala:174
+#: src/MainWindow.vala:175
 msgid "Rescan"
 msgstr "Scanner à nouveau"
 
-#: src/MainWindow.vala:186
+#: src/MainWindow.vala:187
 msgid "Sort by Filename"
 msgstr "Trier par nom de fichier"
 
-#: src/MainWindow.vala:190
+#: src/MainWindow.vala:191
 msgid "Sort by Date"
 msgstr "Trier par date"
 
-#: src/MainWindow.vala:225
+#: src/MainWindow.vala:226
 msgid "Preferences"
 msgstr "Préférences"
+
+#: src/MainWindow.vala:240
+msgid "Light background"
+msgstr "Thème clair"
+
+#: src/MainWindow.vala:241
+msgid "Dark background"
+msgstr "Thème sombre"
 
 #: src/Dialogs/Preferences.vala:45
 msgid "Close"
