@@ -19,12 +19,6 @@ deps = [
   meson.get_compiler('vala').find_library('posix')
 ]
 
-#asresources = gnome.compile_resources(
-#    'as-resources', 'schemas/' + meson.project_name() + '.gresource.xml',
-#    source_dir: 'schemas',
-#    c_name: 'as'
-#)
-
 executable(
     meson.project_name(),
     'src/Application.vala',
@@ -41,8 +35,6 @@ executable(
     'src/Widgets/Views/Conflicts.vala',
     'src/Widgets/Views/Welcome.vala',
     'src/Utils/Utils.vala',
-
- #   asresources,
     c_args: c_args,
     dependencies: [
         deps
