@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.artemanufrij.findfileconflicts\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-18 13:50+0200\n"
+"POT-Creation-Date: 2019-04-18 13:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,6 +33,10 @@ msgstr ""
 
 #: src/MainWindow.vala:93
 msgid "No conflict files found"
+msgstr ""
+
+#: src/MainWindow.vala:118 src/Widgets/Views/Welcome.vala:37
+msgid "Find File Conflicts"
 msgstr ""
 
 #: src/MainWindow.vala:134
@@ -118,10 +122,6 @@ msgstr ""
 
 #: src/Widgets/LocalFile.vala:144
 msgid "Move into Trash"
-msgstr ""
-
-#: src/Widgets/Views/Welcome.vala:37
-msgid "Find File Conflicts"
 msgstr ""
 
 #: src/Widgets/Views/Welcome.vala:37

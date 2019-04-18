@@ -115,7 +115,7 @@ namespace FindFileConflicts {
 
         private void build_ui () {
             headerbar = new Gtk.HeaderBar ();
-            headerbar.title = "Find File Conflicts";
+            headerbar.title = _("Find File Conflicts");
             headerbar.show_close_button = true;
             this.set_titlebar (headerbar);
 
