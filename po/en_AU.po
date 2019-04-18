@@ -1,14 +1,14 @@
 # English translations for com.github.artemanufrij.findfileconflicts package.
-# Copyright (C) 2018 THE com.github.artemanufrij.findfileconflicts'S COPYRIGHT HOLDER
+# Copyright (C) 2019 THE com.github.artemanufrij.findfileconflicts'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.artemanufrij.findfileconflicts package.
-# Automatically generated, 2018.
+# Automatically generated, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.artemanufrij.findfileconflicts\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-04 18:32+0200\n"
-"PO-Revision-Date: 2018-04-04 18:32+0200\n"
+"POT-Creation-Date: 2019-04-18 13:23+0200\n"
+"PO-Revision-Date: 2019-04-18 13:21+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_AU\n"
@@ -17,94 +17,96 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/MainWindow.vala:59
+#: src/MainWindow.vala:63
 msgid "Scaning for conflict files…"
 msgstr "Scaning for conflict files…"
 
-#: src/MainWindow.vala:88
+#: src/MainWindow.vala:71
+#, c-format
+msgid "%s (%u files found)"
+msgstr "%s (%u files found)"
+
+#: src/MainWindow.vala:74
+#, c-format
+msgid "Checked %u files of %u"
+msgstr "Checked %u files of %u"
+
+#: src/MainWindow.vala:93
 msgid "No conflict files found"
 msgstr "No conflict files found"
 
-#: src/MainWindow.vala:127
-msgid "Open Folder"
-msgstr "Open Folder"
-
-#: src/MainWindow.vala:142
-msgid "Preferences"
-msgstr "Preferences"
-
-#: src/MainWindow.vala:156
-msgid "Rescan"
-msgstr "Rescan"
-
-#: src/MainWindow.vala:174
+#: src/MainWindow.vala:143
 msgid "All conflicts solved"
 msgstr "All conflicts solved"
 
-#: src/MainWindow.vala:181
+#: src/MainWindow.vala:150
 #, c-format
 msgid "%u conflicts found"
 msgstr "%u conflicts found"
 
-#: src/Dialogs/Preferences.vala:54
-msgid "General"
-msgstr "General"
+#: src/MainWindow.vala:167
+msgid "Open Folder"
+msgstr "Open Folder"
 
-#: src/Dialogs/Preferences.vala:55
-msgid "Rules"
-msgstr "Rules"
+#: src/MainWindow.vala:174
+msgid "Rescan"
+msgstr "Rescan"
 
-#: src/Dialogs/Preferences.vala:60
+#: src/MainWindow.vala:186
+msgid "Sort by Filename"
+msgstr "Sort by Filename"
+
+#: src/MainWindow.vala:190
+msgid "Sort by Date"
+msgstr "Sort by Date"
+
+#: src/MainWindow.vala:225
+msgid "Preferences"
+msgstr "Preferences"
+
+#: src/Dialogs/Preferences.vala:45
 msgid "Close"
 msgstr "Close"
 
-#: src/Dialogs/Preferences.vala:82
-msgid "Use Dark Theme"
-msgstr "Use Dark Theme"
-
-#: src/Dialogs/Preferences.vala:129
+#: src/Dialogs/Preferences.vala:91
 msgid "Similar File Name"
 msgstr "Similar File Name"
 
-#: src/Dialogs/Preferences.vala:131
+#: src/Dialogs/Preferences.vala:93
 msgid "Too Long File Name"
 msgstr "Too Long File Name"
 
-#: src/Dialogs/Preferences.vala:133
+#: src/Dialogs/Preferences.vala:95
 msgid "Illegal Chars"
 msgstr "Illegal Chars"
 
-#: src/Dialogs/Preferences.vala:135
+#: src/Dialogs/Preferences.vala:97
 msgid "Double Dots"
 msgstr "Double Dots"
 
-#: src/Dialogs/Preferences.vala:137
-msgid "Check for Duplicates"
-msgstr "Check for Duplicates"
-
-#: src/Widgets/LocalFile.vala:44
+#: src/Widgets/LocalFile.vala:45
 msgid "Similar Files"
 msgstr "Similar Files"
 
-#: src/Widgets/LocalFile.vala:46
-msgid "Move into Trash"
-msgstr "Move into Trash"
-
-#: src/Widgets/LocalFile.vala:60
+#: src/Widgets/LocalFile.vala:50
 msgid "Filename contains illegal chars"
 msgstr "Filename contains illegal chars"
 
-#: src/Widgets/LocalFile.vala:63
+#: src/Widgets/LocalFile.vala:53
 msgid "Filename is too long"
 msgstr "Filename is too long"
 
-#: src/Widgets/LocalFile.vala:66
+#: src/Widgets/LocalFile.vala:56
 msgid "Filename contains double dots '..'"
 msgstr "Filename contains double dots '..'"
 
-#: src/Widgets/LocalFile.vala:72
+#: src/Widgets/LocalFile.vala:123
 msgid "Open Location"
 msgstr "Open Location"
+
+#: src/Widgets/LocalFile.vala:144
+msgid "Move into Trash"
+msgstr "Move into Trash"
 
 #: src/Widgets/Views/Welcome.vala:37
 msgid "Find File Conflicts"
