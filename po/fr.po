@@ -19,7 +19,7 @@ msgstr ""
 
 #: src/MainWindow.vala:63
 msgid "Scaning for conflict files…"
-msgstr "Recherche de fichiers de conflit…"
+msgstr "Recherche de fichiers en conflit…"
 
 #: src/MainWindow.vala:71
 #, c-format
@@ -126,7 +126,7 @@ msgstr "Déplacer vers la corbeille"
 
 #: src/Widgets/Views/Welcome.vala:37
 msgid "Check file names."
-msgstr "Vérifier les noms de fichiers."
+msgstr "Vérifiez les noms de fichier."
 
 #: src/Widgets/Views/Welcome.vala:38
 msgid "Open"
