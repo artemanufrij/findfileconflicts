@@ -1,14 +1,14 @@
 # Sindhi translations for com.github.artemanufrij.findfileconflicts package.
-# Copyright (C) 2018 THE com.github.artemanufrij.findfileconflicts'S COPYRIGHT HOLDER
+# Copyright (C) 2019 THE com.github.artemanufrij.findfileconflicts'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.artemanufrij.findfileconflicts package.
-# Automatically generated, 2018.
+# Automatically generated, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.artemanufrij.findfileconflicts\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-04 18:32+0200\n"
-"PO-Revision-Date: 2018-04-04 18:32+0200\n"
+"POT-Creation-Date: 2019-04-18 13:51+0200\n"
+"PO-Revision-Date: 2019-04-18 13:21+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: sd\n"
@@ -16,97 +16,111 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/MainWindow.vala:59
+#: src/MainWindow.vala:63
 msgid "Scaning for conflict files…"
 msgstr ""
 
-#: src/MainWindow.vala:88
+#: src/MainWindow.vala:71
+#, c-format
+msgid "%s (%u files found)"
+msgstr ""
+
+#: src/MainWindow.vala:74
+#, c-format
+msgid "Checked %u files of %u"
+msgstr ""
+
+#: src/MainWindow.vala:93
 msgid "No conflict files found"
 msgstr ""
 
-#: src/MainWindow.vala:127
-msgid "Open Folder"
+#: src/MainWindow.vala:118 src/Widgets/Views/Welcome.vala:37
+msgid "Find File Conflicts"
 msgstr ""
 
-#: src/MainWindow.vala:142
-msgid "Preferences"
+#: src/MainWindow.vala:134
+msgid "Loading…"
 msgstr ""
 
-#: src/MainWindow.vala:156
-msgid "Rescan"
-msgstr ""
-
-#: src/MainWindow.vala:174
+#: src/MainWindow.vala:144
 msgid "All conflicts solved"
 msgstr ""
 
-#: src/MainWindow.vala:181
+#: src/MainWindow.vala:151
 #, c-format
 msgid "%u conflicts found"
 msgstr ""
 
-#: src/Dialogs/Preferences.vala:54
-msgid "General"
+#: src/MainWindow.vala:168
+msgid "Open Folder"
 msgstr ""
 
-#: src/Dialogs/Preferences.vala:55
-msgid "Rules"
+#: src/MainWindow.vala:175
+msgid "Rescan"
 msgstr ""
 
-#: src/Dialogs/Preferences.vala:60
+#: src/MainWindow.vala:187
+msgid "Sort by Filename"
+msgstr ""
+
+#: src/MainWindow.vala:191
+msgid "Sort by Date"
+msgstr ""
+
+#: src/MainWindow.vala:226
+msgid "Preferences"
+msgstr ""
+
+#: src/MainWindow.vala:240
+msgid "Light background"
+msgstr ""
+
+#: src/MainWindow.vala:241
+msgid "Dark background"
+msgstr ""
+
+#: src/Dialogs/Preferences.vala:45
 msgid "Close"
 msgstr ""
 
-#: src/Dialogs/Preferences.vala:82
-msgid "Use Dark Theme"
-msgstr ""
-
-#: src/Dialogs/Preferences.vala:129
+#: src/Dialogs/Preferences.vala:91
 msgid "Similar File Name"
 msgstr ""
 
-#: src/Dialogs/Preferences.vala:131
+#: src/Dialogs/Preferences.vala:93
 msgid "Too Long File Name"
 msgstr ""
 
-#: src/Dialogs/Preferences.vala:133
+#: src/Dialogs/Preferences.vala:95
 msgid "Illegal Chars"
 msgstr ""
 
-#: src/Dialogs/Preferences.vala:135
+#: src/Dialogs/Preferences.vala:97
 msgid "Double Dots"
 msgstr ""
 
-#: src/Dialogs/Preferences.vala:137
-msgid "Check for Duplicates"
-msgstr ""
-
-#: src/Widgets/LocalFile.vala:44
+#: src/Widgets/LocalFile.vala:45
 msgid "Similar Files"
 msgstr ""
 
-#: src/Widgets/LocalFile.vala:46
-msgid "Move into Trash"
-msgstr ""
-
-#: src/Widgets/LocalFile.vala:60
+#: src/Widgets/LocalFile.vala:50
 msgid "Filename contains illegal chars"
 msgstr ""
 
-#: src/Widgets/LocalFile.vala:63
+#: src/Widgets/LocalFile.vala:53
 msgid "Filename is too long"
 msgstr ""
 
-#: src/Widgets/LocalFile.vala:66
+#: src/Widgets/LocalFile.vala:56
 msgid "Filename contains double dots '..'"
 msgstr ""
 
-#: src/Widgets/LocalFile.vala:72
+#: src/Widgets/LocalFile.vala:123
 msgid "Open Location"
 msgstr ""
 
-#: src/Widgets/Views/Welcome.vala:37
-msgid "Find File Conflicts"
+#: src/Widgets/LocalFile.vala:144
+msgid "Move into Trash"
 msgstr ""
 
 #: src/Widgets/Views/Welcome.vala:37
@@ -118,7 +132,7 @@ msgid "Open"
 msgstr ""
 
 #: src/Widgets/Views/Welcome.vala:38
-msgid "Choose a folder for scanning its content for coflicts."
+msgid "Choose a folder for scanning its content for conflicts."
 msgstr ""
 
 #: src/Utils/Utils.vala:41

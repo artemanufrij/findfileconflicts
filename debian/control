@@ -2,11 +2,12 @@ Source: com.github.artemanufrij.findfileconflicts
 Section: x11
 Priority: optional
 Maintainer: Artem Anufrij <artem.anufrij@live.de>
-Build-Depends: meson,
-               debhelper (>= 9),
+Build-Depends: debhelper (>= 9),
+               gettext,
                libgranite-dev,
+               meson,
                valac
-Standards-Version: 3.9.3
+Standards-Version: 4.1.1
 
 Package: com.github.artemanufrij.findfileconflicts
 Architecture: any

@@ -1,5 +1,4 @@
-project('com.github.artemanufrij.findfileconflicts', ['vala', 'c'],
-        version: '1.0.0')
+project('com.github.artemanufrij.findfileconflicts', 'vala', 'c', version: '1.1.2')
 
 i18n = import('i18n')
 gnome = import('gnome')
@@ -13,45 +12,22 @@ c_args = [
   '-include', 'config.h'
 ]
 
-deps = [
-  dependency('granite'),
-  dependency('gtk+-3.0'),
-  meson.get_compiler('vala').find_library('posix')
-]
-
-#asresources = gnome.compile_resources(
-#    'as-resources', 'schemas/' + meson.project_name() + '.gresource.xml',
-#    source_dir: 'schemas',
-#    c_name: 'as'
-#)
+subdir('src')
 
 executable(
     meson.project_name(),
-    'src/Application.vala',
-    'src/MainWindow.vala',
-    'src/Settings.vala',
-    'src/Interfaces/IConflict.vala',
-    'src/Objects/LocalFile.vala',
-    'src/Services/LocalFilesManager.vala',
-    'src/Services/LibraryManager.vala',
-    'src/Dialogs/Preferences.vala',
-    'src/Widgets/LocalFile.vala',
-    'src/Widgets/FilesConflict.vala',
-    'src/Widgets/IllegalFile.vala',
-    'src/Widgets/Views/Conflicts.vala',
-    'src/Widgets/Views/Welcome.vala',
-    'src/Utils/Utils.vala',
-
- #   asresources,
+    sources,
     c_args: c_args,
     dependencies: [
-        deps
+        dependency('granite'),
+        dependency('gtk+-3.0'),
+        meson.get_compiler('vala').find_library('posix')
     ],
     install : true
 )
 
-meson.add_install_script('meson/post_install.py')
-
-subdir('schemas')
 subdir('data')
 subdir('po')
+subdir('schemas')
+
+meson.add_install_script('meson/post_install.py')

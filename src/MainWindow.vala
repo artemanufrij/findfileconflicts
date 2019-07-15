@@ -115,7 +115,7 @@ namespace FindFileConflicts {
 
         private void build_ui () {
             headerbar = new Gtk.HeaderBar ();
-            headerbar.title = "Find File Conflicts";
+            headerbar.title = _("Find File Conflicts");
             headerbar.show_close_button = true;
             this.set_titlebar (headerbar);
 
@@ -131,6 +131,7 @@ namespace FindFileConflicts {
 
             // SPINNER
             spinner = new Gtk.Spinner ();
+            spinner.tooltip_text = _("Loading…");
             headerbar.pack_end (spinner);
 
             // WELCOME
@@ -236,6 +237,8 @@ namespace FindFileConflicts {
 
         private void header_build_style_switcher () {
             var mode_switch = new Granite.ModeSwitch.from_icon_name ("display-brightness-symbolic", "weather-clear-night-symbolic");
+            mode_switch.primary_icon_tooltip_text = _("Light background");
+            mode_switch.secondary_icon_tooltip_text = _("Dark background");
             mode_switch.valign = Gtk.Align.CENTER;
             mode_switch.active = settings.use_dark_theme;
             mode_switch.notify["active"].connect (() => {
