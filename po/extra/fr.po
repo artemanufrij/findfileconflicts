@@ -64,8 +64,8 @@ msgid "Illegal chars like ':'"
 msgstr "Caractères non autorisés comme « : »"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:15
-msgid "Too long file names (&gt;260 chars)"
-msgstr "Noms de fichier trop longs (&gt; 260 caractères)"
+msgid "Too long file names (>260 chars)"
+msgstr "Noms de fichier trop longs (> 260 caractères)"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:28
 msgid "Artem Anufrij"

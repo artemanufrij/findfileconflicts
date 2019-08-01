@@ -60,8 +60,8 @@ msgid "Illegal chars like ':'"
 msgstr "Illegal chars like ':'"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:15
-msgid "Too long file names (&gt;260 chars)"
-msgstr "Too long file names (&gt;260 chars)"
+msgid "Too long file names (>260 chars)"
+msgstr "Too long file names (>260 chars)"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:28
 msgid "Artem Anufrij"
