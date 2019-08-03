@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-18 13:22+0200\n"
+"POT-Creation-Date: 2019-08-01 11:02+0200\n"
 "PO-Revision-Date: 2019-04-18 13:21+0200\n"
 "Last-Translator: NathanBnm\n"
 "Language-Team: none\n"
@@ -37,15 +37,17 @@ msgstr "com.github.artemanufrij.findfileconflicts"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:8
 msgid "Helps to detect and solve possible file conflicts"
-msgstr "Vous aide à détecter et à résoudre de possibles conflits de fichiers"
+msgstr ""
+"Cette application vous permet de détecter et de résoudre de possibles "
+"conflits de fichiers"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:10
 msgid ""
 "Helps to find file names which could have conflicts on non Unix based "
 "operating systems"
 msgstr ""
-"Vous aide à trouver les noms de fichiers qui peuvent créer des conflits sur des "
-"systèmes d'exploitation non basés sur UNIX"
+"Elle vous aide également à trouver les noms de fichiers qui peuvent créer "
+"des conflits sur des systèmes d'exploitation non basés sur UNIX"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:11
 msgid "Checks:"
@@ -53,15 +55,17 @@ msgstr "Vérifications :"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:13
 msgid "Similar file names like 'my document.txt' and 'My Document.txt'"
-msgstr "Noms de fichiers similaires comme « mon document.txt » et « Mon Document.txt »"
+msgstr ""
+"Noms de fichiers similaires comme « mon document.txt » et « Mon Document.txt "
+"»"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:14
 msgid "Illegal chars like ':'"
 msgstr "Caractères non autorisés comme « : »"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:15
-msgid "Too long file names (&gt;260 chars)"
-msgstr "Noms de fichier trop longs (&gt; 260 caractères)"
+msgid "Too long file names (>260 chars)"
+msgstr "Noms de fichier trop longs (> 260 caractères)"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:28
 msgid "Artem Anufrij"
@@ -75,57 +79,63 @@ msgstr "Bienvenue"
 msgid "Conflicts"
 msgstr "Conflits"
 
-#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:46
-#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:58
-#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:87
-msgid "New:"
-msgstr "Nouveauté :"
-
-#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:48
-msgid "Theme switcher"
-msgstr "Bouton de changement de thème"
-
-#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:50
-#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:62
-msgid "Fixed:"
-msgstr "Correction :"
-
-#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:52
-msgid "Possible crash when reorder result"
-msgstr "Plantage possible lors du tri des résultats"
-
-#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:60
-msgid "Sort result table by filename or modified date"
-msgstr "Triez les résultats par nom de fichier ou date de modification"
-
-#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:64
-msgid "Restore correct window size"
-msgstr "Restauration de la taille correcte de la fenêtre"
-
-#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:66
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:47
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:75
 msgid "Translation:"
 msgstr "Traduction :"
 
-#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:68
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:49
+msgid "French (by Nathan Bonnemains)"
+msgstr "Français (par Nathan Bonnemains)"
+
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:55
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:67
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:96
+msgid "New:"
+msgstr "Nouveauté :"
+
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:57
+msgid "Theme switcher"
+msgstr "Bouton de changement de thème"
+
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:59
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:71
+msgid "Fixed:"
+msgstr "Correction :"
+
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:61
+msgid "Possible crash when reorder result"
+msgstr "Plantage possible lors du tri des résultats"
+
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:69
+msgid "Sort result table by filename or modified date"
+msgstr "Triez les résultats par nom de fichier ou date de modification"
+
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:73
+msgid "Restore correct window size"
+msgstr "Restauration de la taille correcte de la fenêtre"
+
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:77
 msgid "Dutch (by Heimen Stoffels)"
 msgstr "Néerlandais (par Heimen Stoffels)"
 
-#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:73
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:82
 msgid "Prepare for JUNO"
 msgstr "Préparation pour JUNO"
 
-#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:79
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:88
 msgid "Improved:"
 msgstr "Amélioration :"
 
-#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:81
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:90
 msgid "Performance for high number of files"
 msgstr "Performance pour un grand nombre de fichiers"
 
-#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:89
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:98
 msgid "Enable/Disable some rules in Preferences dialog"
-msgstr "Activez/Désactivez certaines règles dans la boîte de dialogue des préférences"
+msgstr ""
+"Activez/Désactivez certaines règles dans la boîte de dialogue des préférences"
 
-#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:94
+#: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:103
 msgid "Initial Release"
 msgstr "Version initiale"
