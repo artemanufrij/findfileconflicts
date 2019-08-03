@@ -27,7 +27,7 @@ sudo apt install git meson
 Clone repository and change directory
 ```
 git clone https://github.com/artemanufrij/findfileconflicts.git
-cd trimdown
+cd findfileconflicts
 ```
 Compile, install and start Find File Conflicts on your system
 ```
