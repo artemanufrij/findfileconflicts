@@ -8,127 +8,132 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-01 11:02+0200\n"
-"PO-Revision-Date: 2019-04-18 13:21+0200\n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-08-20 20:23+0200\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: none\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: data/com.github.artemanufrij.findfileconflicts.desktop.in:3
 #: data/com.github.artemanufrij.findfileconflicts.desktop.in:4
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:7
 msgid "File Conflicts Finder"
-msgstr ""
+msgstr "Bestandsconflictzoeker"
 
 #: data/com.github.artemanufrij.findfileconflicts.desktop.in:5
 msgid "An app for finding file name conflicts"
-msgstr ""
+msgstr "Een toepassing voor het vinden van bestandsconflicten"
 
 #: data/com.github.artemanufrij.findfileconflicts.desktop.in:6
 msgid "conflict;files;"
-msgstr ""
+msgstr "conflict;bestanden;zoeken;"
 
 #: data/com.github.artemanufrij.findfileconflicts.desktop.in:8
 msgid "com.github.artemanufrij.findfileconflicts"
-msgstr ""
+msgstr "com.github.artemanufrij.findfileconflicts"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:8
 msgid "Helps to detect and solve possible file conflicts"
-msgstr ""
+msgstr "Helpt je bij het zoeken naar en oplossen van bestandsconflicten"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:10
 msgid ""
 "Helps to find file names which could have conflicts on non Unix based "
 "operating systems"
 msgstr ""
+"Helpt je bij het zoeken naar bestandsnamen die mogelijk conflicten "
+"bevatten op niet op Unix gebaseerde besturingssystemen"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:11
 msgid "Checks:"
-msgstr ""
+msgstr "Controleert:"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:13
 msgid "Similar file names like 'my document.txt' and 'My Document.txt'"
 msgstr ""
+"Vergelijkbare bestandsnamen, zoals 'mijn document.txt' en 'Mijn "
+"document.txt'"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:14
 msgid "Illegal chars like ':'"
-msgstr ""
+msgstr "Niet-toegestane tekens, zoals ':'"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:15
 msgid "Too long file names (>260 chars)"
-msgstr ""
+msgstr "Te lange bestandsnamen (meer dan 260 tekens)"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:28
 msgid "Artem Anufrij"
-msgstr ""
+msgstr "Artem Anufrij"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:35
 msgid "Welcome"
-msgstr ""
+msgstr "Welkom"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:39
 msgid "Conflicts"
-msgstr ""
+msgstr "Conflicten"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:47
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:75
 msgid "Translation:"
-msgstr ""
+msgstr "Vertaling:"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:49
 msgid "French (by Nathan Bonnemains)"
-msgstr ""
+msgstr "Frans (door Nathan Bonnemains)"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:55
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:67
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:96
 msgid "New:"
-msgstr ""
+msgstr "Nieuw:"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:57
 msgid "Theme switcher"
-msgstr ""
+msgstr "Themakeuze"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:59
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:71
 msgid "Fixed:"
-msgstr ""
+msgstr "Opgelost:"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:61
 msgid "Possible crash when reorder result"
-msgstr ""
+msgstr "Mogelijk crash tijdens het herordenen van resultaten"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:69
 msgid "Sort result table by filename or modified date"
-msgstr ""
+msgstr "Sorteer de resultatentabel op bestandsnaam of wijzigingsdatum"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:73
 msgid "Restore correct window size"
-msgstr ""
+msgstr "Herstel de juiste venstergrootte"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:77
 msgid "Dutch (by Heimen Stoffels)"
-msgstr ""
+msgstr "Nederlands (door Heimen Stoffels)"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:82
 msgid "Prepare for JUNO"
-msgstr ""
+msgstr "Voorbereiding voor Juno"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:88
 msgid "Improved:"
-msgstr ""
+msgstr "Verbeterd:"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:90
 msgid "Performance for high number of files"
-msgstr ""
+msgstr "Prestaties bij grote aantallen bestanden"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:98
 msgid "Enable/Disable some rules in Preferences dialog"
-msgstr ""
+msgstr "Schakel sommige regels in of uit middels het voorkeurenvenster"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:103
 msgid "Initial Release"
-msgstr ""
+msgstr "Initiële uitgave"
