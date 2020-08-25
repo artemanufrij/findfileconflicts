@@ -1,153 +1,154 @@
 # Portuguese translations for com.github.artemanufrij.findfileconflicts package.
 # Copyright (C) 2019 THE com.github.artemanufrij.findfileconflicts'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.artemanufrij.findfileconflicts package.
-# Automatically generated, 2019.
+# André Barata <andretiagob@protonmail.com>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.artemanufrij.findfileconflicts\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-18 13:51+0200\n"
-"PO-Revision-Date: 2019-04-18 13:21+0200\n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-08-25 15:04+0100\n"
+"Last-Translator: André Barata <andretiagob@protonmail.com>\n"
 "Language-Team: none\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: src/MainWindow.vala:63
 msgid "Scaning for conflict files…"
-msgstr ""
+msgstr "A procurar conflitos de ficheiros..."
 
 #: src/MainWindow.vala:71
 #, c-format
 msgid "%s (%u files found)"
-msgstr ""
+msgstr "%s (%u ficheiros encontrados)"
 
 #: src/MainWindow.vala:74
 #, c-format
 msgid "Checked %u files of %u"
-msgstr ""
+msgstr "Verificados %u ficheiros de %u"
 
 #: src/MainWindow.vala:93
 msgid "No conflict files found"
-msgstr ""
+msgstr "Ficheiros em conflito não encontrados"
 
 #: src/MainWindow.vala:118 src/Widgets/Views/Welcome.vala:37
 msgid "Find File Conflicts"
-msgstr ""
+msgstr "Encontrar Conflitos de Ficheiros"
 
 #: src/MainWindow.vala:134
 msgid "Loading…"
-msgstr ""
+msgstr "A carregar..."
 
 #: src/MainWindow.vala:144
 msgid "All conflicts solved"
-msgstr ""
+msgstr "Todos os conflitos foram resolvidos"
 
 #: src/MainWindow.vala:151
 #, c-format
 msgid "%u conflicts found"
-msgstr ""
+msgstr "%u conflitos encontrados"
 
 #: src/MainWindow.vala:168
 msgid "Open Folder"
-msgstr ""
+msgstr "Abrir Pasta"
 
 #: src/MainWindow.vala:175
 msgid "Rescan"
-msgstr ""
+msgstr "Reexaminar"
 
 #: src/MainWindow.vala:187
 msgid "Sort by Filename"
-msgstr ""
+msgstr "Ordenar por Nome de Ficheiro"
 
 #: src/MainWindow.vala:191
 msgid "Sort by Date"
-msgstr ""
+msgstr "Ordenar por Data"
 
 #: src/MainWindow.vala:226
 msgid "Preferences"
-msgstr ""
+msgstr "Preferências"
 
 #: src/MainWindow.vala:240
 msgid "Light background"
-msgstr ""
+msgstr "Fundo Claro"
 
 #: src/MainWindow.vala:241
 msgid "Dark background"
-msgstr ""
+msgstr "Fundo Escuro"
 
 #: src/Dialogs/Preferences.vala:45
 msgid "Close"
-msgstr ""
+msgstr "Fechar"
 
 #: src/Dialogs/Preferences.vala:91
 msgid "Similar File Name"
-msgstr ""
+msgstr "Nome do Ficheiro Semelhante"
 
 #: src/Dialogs/Preferences.vala:93
 msgid "Too Long File Name"
-msgstr ""
+msgstr "Nome do Ficheiro Muito Longo"
 
 #: src/Dialogs/Preferences.vala:95
 msgid "Illegal Chars"
-msgstr ""
+msgstr "Caracteres Ilegais"
 
 #: src/Dialogs/Preferences.vala:97
 msgid "Double Dots"
-msgstr ""
+msgstr "Pontos Duplos"
 
 #: src/Widgets/LocalFile.vala:45
 msgid "Similar Files"
-msgstr ""
+msgstr "Ficheiros Semelhantes"
 
 #: src/Widgets/LocalFile.vala:50
 msgid "Filename contains illegal chars"
-msgstr ""
+msgstr "O nome do ficheiro contem caracteres Ilegais"
 
 #: src/Widgets/LocalFile.vala:53
 msgid "Filename is too long"
-msgstr ""
+msgstr "O nome do ficheiro é demasiado longo"
 
 #: src/Widgets/LocalFile.vala:56
 msgid "Filename contains double dots '..'"
-msgstr ""
+msgstr "O nome do ficheiro contem pontos duplos '..'"
 
 #: src/Widgets/LocalFile.vala:123
 msgid "Open Location"
-msgstr ""
+msgstr "Abrir Localização"
 
 #: src/Widgets/LocalFile.vala:144
 msgid "Move into Trash"
-msgstr ""
+msgstr "Mover para o Lixo"
 
 #: src/Widgets/Views/Welcome.vala:37
 msgid "Check file names."
-msgstr ""
+msgstr "Verificar nome dos ficheiros."
 
 #: src/Widgets/Views/Welcome.vala:38
 msgid "Open"
-msgstr ""
+msgstr "Abrir"
 
 #: src/Widgets/Views/Welcome.vala:38
 msgid "Choose a folder for scanning its content for conflicts."
-msgstr ""
+msgstr "Escolha uma pasta para procurar conflitos no seu conteúdo."
 
 #: src/Utils/Utils.vala:41
 msgid "Select a folder."
-msgstr ""
+msgstr "Selecione uma pasta."
 
 #: src/Utils/Utils.vala:42
 msgid "_Cancel"
-msgstr ""
+msgstr "_Cancelar"
 
 #: src/Utils/Utils.vala:43
 msgid "_Open"
-msgstr ""
+msgstr "_Abrir"
 
 #: src/Utils/Utils.vala:46
 msgid "Folder"
-msgstr ""
+msgstr "Pasta"
