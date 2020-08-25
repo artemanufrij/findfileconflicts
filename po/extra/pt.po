@@ -1,134 +1,141 @@
 # Portuguese translations for extra package.
 # Copyright (C) 2019 THE extra'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the extra package.
-# Automatically generated, 2019.
+# André Barata <andretiagob@protonmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-01 11:02+0200\n"
-"PO-Revision-Date: 2019-04-18 13:21+0200\n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-08-25 15:16+0100\n"
+"Last-Translator: André Barata <andretiagob@protonmail.com>\n"
 "Language-Team: none\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: data/com.github.artemanufrij.findfileconflicts.desktop.in:3
 #: data/com.github.artemanufrij.findfileconflicts.desktop.in:4
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:7
 msgid "File Conflicts Finder"
-msgstr ""
+msgstr "Localizador de Conflitos de Ficheiros"
 
 #: data/com.github.artemanufrij.findfileconflicts.desktop.in:5
 msgid "An app for finding file name conflicts"
-msgstr ""
+msgstr "Uma aplicação para encontrar conflitos de nomes de ficheiros"
 
 #: data/com.github.artemanufrij.findfileconflicts.desktop.in:6
 msgid "conflict;files;"
-msgstr ""
+msgstr "conflito;ficheiros;"
 
 #: data/com.github.artemanufrij.findfileconflicts.desktop.in:8
 msgid "com.github.artemanufrij.findfileconflicts"
-msgstr ""
+msgstr "com.github.artemanufrij.findfileconflicts"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:8
 msgid "Helps to detect and solve possible file conflicts"
-msgstr ""
+msgstr "Ajuda a detetar e resolver possíveis conflitos de ficheiros"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:10
 msgid ""
 "Helps to find file names which could have conflicts on non Unix based "
 "operating systems"
 msgstr ""
+"Ajuda a encontrar nomes de ficheiros que poderão ter conflitos em "
+"sistemas operativos baseados no Unix"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:11
 msgid "Checks:"
-msgstr ""
+msgstr "Verificações:"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:13
 msgid "Similar file names like 'my document.txt' and 'My Document.txt'"
 msgstr ""
+"Nomes de ficheiros semelhantes como 'meu documento.txt' e 'Meu "
+"Documento.txt'"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:14
 msgid "Illegal chars like ':'"
-msgstr ""
+msgstr "Caracteres ilegais como ':'"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:15
 msgid "Too long file names (>260 chars)"
-msgstr ""
+msgstr "Nomes de ficheiros muito longos (>260 caracteres)"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:28
 msgid "Artem Anufrij"
-msgstr ""
+msgstr "Artem Anufrij"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:35
 msgid "Welcome"
-msgstr ""
+msgstr "Bem VIndo"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:39
 msgid "Conflicts"
-msgstr ""
+msgstr "Conflitos"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:47
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:75
 msgid "Translation:"
-msgstr ""
+msgstr "Tradução:"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:49
 msgid "French (by Nathan Bonnemains)"
-msgstr ""
+msgstr "Francês (por Nathan Bonnemains)"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:55
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:67
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:96
 msgid "New:"
-msgstr ""
+msgstr "Novo:"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:57
 msgid "Theme switcher"
-msgstr ""
+msgstr "Alteração de tema"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:59
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:71
 msgid "Fixed:"
-msgstr ""
+msgstr "Correções:"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:61
 msgid "Possible crash when reorder result"
-msgstr ""
+msgstr "Possível falha ao reordenar o resultado"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:69
 msgid "Sort result table by filename or modified date"
 msgstr ""
+"Ordenar a tabela do resultado por nome de ficheiro ou por última "
+"modificação"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:73
 msgid "Restore correct window size"
-msgstr ""
+msgstr "Restaurar o tamanho correto da janela"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:77
 msgid "Dutch (by Heimen Stoffels)"
-msgstr ""
+msgstr "Holandês (por Heimen Stoffels)"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:82
 msgid "Prepare for JUNO"
-msgstr ""
+msgstr "Preparações para o Juno"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:88
 msgid "Improved:"
-msgstr ""
+msgstr "Melhorado:"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:90
 msgid "Performance for high number of files"
-msgstr ""
+msgstr "Desempenho para um grande número de ficheiros"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:98
 msgid "Enable/Disable some rules in Preferences dialog"
-msgstr ""
+msgstr "Ligar/Desligar algumas regras no dialogo de Preferências"
 
 #: data/com.github.artemanufrij.findfileconflicts.appdata.xml.in:103
 msgid "Initial Release"
-msgstr ""
+msgstr "Lançamento Inicial"
