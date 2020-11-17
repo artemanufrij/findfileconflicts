@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.github.artemanufrij.findfileconflicts\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-18 13:51+0200\n"
-"PO-Revision-Date: 2019-04-18 13:21+0200\n"
+"PO-Revision-Date: 2020-08-20 20:18+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: none\n"
 "Language: nl\n"
@@ -16,20 +16,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: src/MainWindow.vala:63
 msgid "Scaning for conflict files…"
 msgstr "Bezig met zoeken naar bestandsconflicten…"
 
 #: src/MainWindow.vala:71
-#, fuzzy, c-format
+#, c-format
 msgid "%s (%u files found)"
-msgstr "%u conflicten gevonden"
+msgstr "%s (%u bestanden aangetroffen)"
 
 #: src/MainWindow.vala:74
 #, c-format
 msgid "Checked %u files of %u"
-msgstr ""
+msgstr "%u van %u bestanden gecontroleerd"
 
 #: src/MainWindow.vala:93
 msgid "No conflict files found"
@@ -41,7 +42,7 @@ msgstr "Bestandsconflicten zoeken"
 
 #: src/MainWindow.vala:134
 msgid "Loading…"
-msgstr ""
+msgstr "Bezig met laden…"
 
 #: src/MainWindow.vala:144
 msgid "All conflicts solved"
@@ -61,13 +62,12 @@ msgid "Rescan"
 msgstr "Opnieuw doorzoeken"
 
 #: src/MainWindow.vala:187
-#, fuzzy
 msgid "Sort by Filename"
-msgstr "Vergelijkbare bestandsnaam"
+msgstr "Sorteren op bestandsnaam"
 
 #: src/MainWindow.vala:191
 msgid "Sort by Date"
-msgstr ""
+msgstr "Sorteren op datum"
 
 #: src/MainWindow.vala:226
 msgid "Preferences"
@@ -75,11 +75,11 @@ msgstr "Voorkeuren"
 
 #: src/MainWindow.vala:240
 msgid "Light background"
-msgstr ""
+msgstr "Licht thema"
 
 #: src/MainWindow.vala:241
 msgid "Dark background"
-msgstr ""
+msgstr "Donker thema"
 
 #: src/Dialogs/Preferences.vala:45
 msgid "Close"
@@ -115,7 +115,7 @@ msgstr "Bestandsnaam is te lang"
 
 #: src/Widgets/LocalFile.vala:56
 msgid "Filename contains double dots '..'"
-msgstr "Bestandsnaam bevat twee punten '..'"
+msgstr "Bestandsnaam bevat twee punten: '..'"
 
 #: src/Widgets/LocalFile.vala:123
 msgid "Open Location"
