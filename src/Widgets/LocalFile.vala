@@ -41,21 +41,19 @@ namespace FindFileConflicts.Widgets {
         private void build_ui (bool show_separator) {
             content = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
-            if (file.conflict_type == Objects.ConflictType.SIMILAR) {
-                this.tooltip_text = _ ("Similar Files");
-
-            } else {
-                switch (file.conflict_type) {
-                    case Objects.ConflictType.CHARS :
-                        this.tooltip_text = _ ("Filename contains illegal chars");
-                        break;
-                    case Objects.ConflictType.LENGTH :
-                        this.tooltip_text = _ ("Filename is too long");
-                        break;
-                    case Objects.ConflictType.DOTS :
-                        this.tooltip_text = _ ("Filename contains double dots '..'");
-                        break;
-                }
+            switch (file.conflict_type) {
+                case Objects.ConflictType.CHARS :
+                    this.tooltip_text = _ ("Filename contains illegal chars");
+                    break;
+                case Objects.ConflictType.LENGTH :
+                    this.tooltip_text = _ ("Filename is too long");
+                    break;
+                case Objects.ConflictType.DOTS :
+                    this.tooltip_text = _ ("Filename contains double dots '..'");
+                    break;
+                case Objects.ConflictType.SIMILAR :
+                    this.tooltip_text = _ ("Similar Files");
+                    break;
             }
 
             this.enter_notify_event.connect (

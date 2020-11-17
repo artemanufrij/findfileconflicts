@@ -42,11 +42,8 @@ namespace FindFileConflicts.Dialogs {
             var content = this.get_content_area () as Gtk.Box;
             content.add (build_rules_grid ());
 
-            var close_button = new Gtk.Button.with_label (_ ("Close"));
+            var close_button = this.add_button (_ ("Close"), 0) as Gtk.Button;
             close_button.clicked.connect (() => { this.destroy (); });
-
-            Gtk.Box actions = this.get_action_area () as Gtk.Box;
-            actions.add (close_button);
 
             this.show_all ();
         }

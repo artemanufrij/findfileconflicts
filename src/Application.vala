@@ -66,7 +66,7 @@ namespace FindFileConflicts {
         private SimpleAction action_generator (string command, string action) {
             var return_value = new SimpleAction (action, null);
             add_action (return_value);
-            string[] accel = {command, "0"};
+            string[] accel = {command};
             set_accels_for_action ("app.%s".printf (action), accel);
             return return_value;
         }

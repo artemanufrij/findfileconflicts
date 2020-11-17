@@ -110,7 +110,6 @@ namespace FindFileConflicts {
                 save_settings ();
                 return false;
             });
-            Utils.set_custom_css_style (this.get_screen ());
         }
 
         private void build_ui () {

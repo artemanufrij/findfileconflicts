@@ -26,15 +26,6 @@
  */
 
 namespace FindFileConflicts.Utils {
-    public static void set_custom_css_style (Gdk.Screen screen) {
-        Granite.Widgets.Utils.set_theming_for_screen (
-            screen,
-                """
-                """,
-                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-            );
-    }
-
     public static string ? choose_folder () {
         string ? return_value = null;
         Gtk.FileChooserDialog chooser = new Gtk.FileChooserDialog (
